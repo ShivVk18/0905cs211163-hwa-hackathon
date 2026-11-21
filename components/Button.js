@@ -24,6 +24,20 @@ export const buttonVariants = {
     base: 'bg-coral text-white shadow-soft hover:bg-dark-teal transition-colors duration-200',
     shadow: 'shadow-soft hover:shadow-card transition-shadow duration-200',
   },
+  raised: {
+    base: 'bg-teal text-white border-2 border-dark-teal shadow-[0_4px_0_#103B38] hover:bg-dark-teal hover:translate-y-[2px] hover:shadow-[0_2px_0_#103B38] active:translate-y-[4px] active:shadow-[0_0px_0_#103B38] transition-all duration-150',
+    shadow: '',
+  },
+  outlineDark: {
+    base: 'bg-white text-text border-2 border-text hover:bg-peach hover:border-dark-teal hover:text-dark-teal transition-colors duration-200',
+    shadow: 'shadow-soft hover:shadow-card transition-shadow duration-200',
+  },
+};
+
+const shapeStyles = {
+  button: 'rounded-button',
+  pill: 'rounded-full',
+  card: 'rounded-card',
 };
 
 const sizeStyles = {
@@ -45,13 +59,14 @@ export function Button({
   children,
   variant = 'primary',
   size = 'md',
+  shape = 'button',
   className = '',
   disabled = false,
   asChild = false,
   ...props
 }) {
   const styles = buttonVariants[variant];
-  const baseClass = `inline-flex items-center justify-center gap-2 rounded-button font-medium transition-all duration-200 ${styles?.base ?? ''} ${sizeStyles[size] ?? sizeStyles.md} ${className}`;
+  const baseClass = `inline-flex items-center justify-center gap-2 ${shapeStyles[shape] ?? shapeStyles.button} font-medium transition-all duration-200 ${styles?.base ?? ''} ${sizeStyles[size] ?? sizeStyles.md} ${className}`;
 
   const motionProps = {
     whileHover: !disabled ? { scale: 1.02 } : undefined,

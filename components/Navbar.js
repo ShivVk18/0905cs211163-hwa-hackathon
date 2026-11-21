@@ -5,7 +5,6 @@ import Link from 'next/link';
 import { motion, AnimatePresence } from 'motion/react';
 import { Button } from './Button';
 import { CartButton } from './CartButton';
-import { Container } from './Container';
 
 const PAW_ICON = (
   <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
@@ -83,72 +82,70 @@ export function Navbar({ cartCount = 0 }) {
 
   return (
     <>
-      <header className="sticky top-0 z-50 border-b border-peach/50 bg-background/90 backdrop-blur-md">
-        <nav aria-label="Main navigation">
-          <Container>
-            <div className="flex h-16 items-center justify-between gap-4">
-              {/* Logo */}
-              <Link
-                href="/"
-                onClick={closeMenu}
-                className="group flex shrink-0 items-center gap-2 text-teal transition-transform duration-200 hover:-rotate-3"
+      <header className="sticky top-3 z-50 px-3 sm:px-4">
+        <nav
+          aria-label="Main navigation"
+          className="mx-auto max-w-6xl rounded-full border-2 border-text bg-background/95 shadow-soft backdrop-blur-md"
+        >
+          <div className="grid h-16 grid-cols-[auto_1fr_auto] items-center gap-2 pl-5 pr-2.5 sm:pl-6 lg:grid-cols-[1fr_auto_1fr]">
+            {/* Logo */}
+            <Link
+              href="/"
+              onClick={closeMenu}
+              className="group flex shrink-0 items-center gap-2 justify-self-start text-teal transition-transform duration-200 hover:-rotate-3"
+            >
+              <span className="grid h-9 w-9 place-items-center rounded-xl bg-teal text-white shadow-soft transition-colors duration-200 group-hover:bg-dark-teal">
+                {PAW_ICON}
+              </span>
+              <span className="hidden font-heading text-xl font-bold tracking-tight text-text sm:inline">
+                AwayStack
+              </span>
+            </Link>
+
+            {/* Centre — nav links inside a soft cream pill */}
+            <ul className="hidden items-center gap-1 justify-self-center rounded-full bg-peach/40 px-2 py-1.5 lg:flex">
+              {navLinks.map((link) => (
+                <li key={link.name}>
+                  {link.type === 'section' ? (
+                    <a
+                      href={link.href}
+                      onClick={(e) => handleSectionClick(e, link.href.slice(1))}
+                      className="relative block rounded-full px-3.5 py-1.5 text-sm font-medium text-text/80 transition-colors duration-200 hover:bg-white/70 hover:text-teal"
+                    >
+                      {link.name}
+                    </a>
+                  ) : (
+                    <Link
+                      href={link.href}
+                      onClick={closeMenu}
+                      className="relative block rounded-full px-3.5 py-1.5 text-sm font-medium text-text/80 transition-colors duration-200 hover:bg-white/70 hover:text-teal"
+                    >
+                      {link.name}
+                    </Link>
+                  )}
+                </li>
+              ))}
+            </ul>
+
+            {/* Right — cart and shop now */}
+            <div className="flex shrink-0 items-center gap-2 justify-self-end">
+              <CartButton count={cartCount} onClick={handleCartClick} />
+
+              <Button variant="raised" size="sm" shape="pill" asChild>
+                <Link href={PRODUCT_HREF}>Shop now</Link>
+              </Button>
+
+              <button
+                type="button"
+                onClick={() => setIsMenuOpen(true)}
+                aria-label="Open menu"
+                aria-expanded={isMenuOpen}
+                className="grid h-10 w-10 place-items-center rounded-full border-2 border-text bg-white text-text transition-colors duration-200 hover:bg-peach hover:text-teal lg:hidden"
               >
-                <span className="grid h-9 w-9 place-items-center rounded-xl bg-teal text-white shadow-soft transition-colors duration-200 group-hover:bg-dark-teal">
-                  {PAW_ICON}
-                </span>
-                <span className="font-heading text-xl font-bold tracking-tight text-text">
-                  AwayStack
-                </span>
-              </Link>
-
-              {/* Desktop nav links */}
-              <ul className="hidden items-center gap-7 lg:flex">
-                {navLinks.map((link) => (
-                  <li key={link.name}>
-                    {link.type === 'section' ? (
-                      <a
-                        href={link.href}
-                        onClick={(e) => handleSectionClick(e, link.href.slice(1))}
-                        className="relative py-1 text-sm font-medium text-text/80 transition-colors duration-200 hover:text-teal after:absolute after:-bottom-0.5 after:left-0 after:h-px after:w-0 after:bg-teal after:transition-all after:duration-300 hover:after:w-full"
-                      >
-                        {link.name}
-                      </a>
-                    ) : (
-                      <Link
-                        href={link.href}
-                        onClick={closeMenu}
-                        className="relative py-1 text-sm font-medium text-text/80 transition-colors duration-200 hover:text-teal after:absolute after:-bottom-0.5 after:left-0 after:h-px after:w-0 after:bg-teal after:transition-all after:duration-300 hover:after:w-full"
-                      >
-                        {link.name}
-                      </Link>
-                    )}
-                  </li>
-                ))}
-              </ul>
-
-              {/* Desktop right actions */}
-              <div className="hidden shrink-0 items-center gap-2 lg:flex">
-                <CartButton count={cartCount} onClick={handleCartClick} />
-                <Button variant="coral" size="sm" asChild>
-                  <Link href={PRODUCT_HREF}>Shop now</Link>
-                </Button>
-              </div>
-
-              {/* Mobile right actions */}
-              <div className="flex shrink-0 items-center gap-1 lg:hidden">
-                <CartButton count={cartCount} onClick={handleCartClick} />
-                <button
-                  type="button"
-                  onClick={() => setIsMenuOpen(true)}
-                  aria-label="Open menu"
-                  aria-expanded={isMenuOpen}
-                  className="grid h-10 w-10 place-items-center rounded-button text-text transition-colors duration-200 hover:bg-peach hover:text-teal"
-                >
-                  {MENU_ICON}
-                </button>
-              </div>
+                {MENU_ICON}
+              </button>
             </div>
-          </Container>
+          </div>
         </nav>
       </header>
 
@@ -224,14 +221,15 @@ export function Navbar({ cartCount = 0 }) {
             </ul>
 
             <div className="space-y-3 border-t border-peach/50 px-5 py-5">
-              <Button variant="coral" size="lg" asChild className="w-full">
+              <Button variant="raised" size="lg" shape="pill" asChild className="w-full">
                 <Link href={PRODUCT_HREF} onClick={closeMenu}>
                   Shop now
                 </Link>
               </Button>
               <Button
-                variant="secondary"
+                variant="outlineDark"
                 size="md"
+                shape="pill"
                 onClick={handleCartClick}
                 className="w-full"
               >

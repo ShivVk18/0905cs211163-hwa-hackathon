@@ -16,7 +16,7 @@ export function CartButton({ count = 0, onClick, className = '' }) {
       type="button"
       onClick={onClick}
       aria-label={`Cart, ${count} items`}
-      className={`relative grid h-10 w-10 place-items-center rounded-button text-text transition-colors duration-200 hover:bg-peach hover:text-teal ${className}`}
+      className={`relative grid h-10 w-10 place-items-center rounded-full border-2 border-text bg-white text-text transition-colors duration-200 hover:bg-peach hover:text-teal ${className}`}
     >
       {CART_ICON}
       <Badge
