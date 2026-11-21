@@ -6,6 +6,7 @@ import { motion } from 'motion/react';
 import { Button } from '@/components/Button';
 import { Badge } from '@/components/Badge';
 import { Container } from '@/components/Container';
+import { HandUnderline } from '@/components/HandUnderline';
 import { scrollToSection } from '@/lib/scroll';
 
 const PRODUCT_HREF = '/shop/awaystack';
@@ -42,33 +43,6 @@ function CupIndicators({ filled, total = 6 }) {
         />
       ))}
     </span>
-  );
-}
-
-function Underline() {
-  return (
-    <svg
-      className="pointer-events-none absolute -bottom-1 left-0 h-[0.2em] w-full"
-      viewBox="0 0 300 14"
-      preserveAspectRatio="none"
-      fill="none"
-      aria-hidden="true"
-    >
-      <path
-        d="M5 9 C 62 2, 104 13, 152 6 S 248 2, 295 8"
-        stroke="#F1785B"
-        strokeWidth="5"
-        strokeLinecap="round"
-        opacity="0.9"
-      />
-      <path
-        d="M10 11 C 72 5, 124 14, 168 8 S 256 6, 291 10"
-        stroke="#F1785B"
-        strokeWidth="3"
-        strokeLinecap="round"
-        opacity="0.45"
-      />
-    </svg>
   );
 }
 
@@ -139,7 +113,7 @@ export function Hero() {
               <span className="block text-text">One Prepartion</span>
               <span className="relative mt-1 inline-block pb-2 text-teal">
                 Six lick moments
-                <Underline />
+                <HandUnderline />
               </span>
               <span className="block text-text">across your day.</span>
             </h1>

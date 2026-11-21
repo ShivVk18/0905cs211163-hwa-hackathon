@@ -5,6 +5,7 @@ import { motion } from 'motion/react';
 
 import { Button } from '@/components/Button';
 import { Container } from '@/components/Container';
+import { HandUnderline } from '@/components/HandUnderline';
 import { MechanismCycle } from '@/components/MechanismCycle';
 
 const EXPLANATION_CARDS = [
@@ -80,12 +81,21 @@ export function HowItWorks() {
             transition={{ duration: 0.55 }}
             className="mx-auto max-w-3xl text-center"
           >
-            <span className="inline-flex rounded-full bg-white px-4 py-1.5 text-sm font-bold uppercase tracking-[0.14em] text-coral shadow-card">
+            <span className="inline-flex rounded-full border-2 border-text bg-white px-4 py-1.5 text-sm font-bold uppercase tracking-[0.14em] text-coral shadow-card">
               How it works
             </span>
             <h2 className="mt-6 font-heading text-4xl font-bold leading-[1.1] tracking-tight text-text sm:text-5xl lg:text-[3.4rem]">
-              A little clockwork kitchen, inside a tower
+              A little clockwork kitchen,{' '}
+              <span className="relative inline-block pb-2 text-teal">
+                inside a tower
+                <HandUnderline />
+              </span>
             </h2>
+            <p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-text/70 sm:text-lg">
+              Six sealed frozen cups stack inside the insulated tower. Turn the
+              dial in the morning and the clockwork mechanism does the rest,
+              one cup at a time.
+            </p>
           </motion.div>
 
           {/* Two column: cutaway image + explanation cards */}
