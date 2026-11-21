@@ -2,8 +2,6 @@
 
 import { motion } from 'motion/react';
 
-import { Container } from '@/components/Container';
-
 const PARTS = [
   '01 Twist-lock lid',
   '02 Six sealed frozen cups',
@@ -22,7 +20,7 @@ function PawPrint() {
       whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
       viewport={{ once: true, amount: 0.2 }}
       transition={{ duration: 0.6 }}
-      className="pointer-events-none absolute -bottom-10 -right-8 h-48 w-48 text-text/12 sm:-bottom-14 sm:-right-12 sm:h-64 sm:w-64 lg:-right-16 lg:h-80 lg:w-80"
+      className="pointer-events-none absolute -bottom-8 right-4 h-28 w-28 text-text/10 sm:-bottom-10 sm:right-6 sm:h-36 sm:w-36 lg:h-40 lg:w-40"
       fill="currentColor"
     >
       <ellipse cx="50" cy="63" rx="23" ry="18.5" />
@@ -36,70 +34,73 @@ function PawPrint() {
 
 export function WhatsInside() {
   return (
-    <section className="relative overflow-hidden bg-yellow py-20 sm:py-28">
+    <section className="relative overflow-hidden bg-background py-16 sm:py-24">
       <PawPrint />
 
-      <Container className="relative z-10">
-        <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
-          {/* Left — exploded product image */}
-          <motion.div
-            initial={{ opacity: 0, x: -26 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, amount: 0.25 }}
-            transition={{ duration: 0.6 }}
-            className="mx-auto w-full max-w-[480px] lg:mx-0"
-          >
-            <div className="-rotate-[2deg] lg:-rotate-[3deg]">
-              <div className="overflow-hidden rounded-[2rem] border-2 border-text bg-white p-2.5 shadow-soft">
-                <img
-                  src="/images/exploded.jpg"
-                  alt="Exploded view of the AwayStack showing the twist-lock lid, six frozen lick cups, frosted insulated tower, slide drawer, lick tray and the base with dial, flags and cup bin"
-                  width={687}
-                  height={1024}
-                  loading="lazy"
-                  decoding="async"
-                  className="block aspect-[2/3] w-full rounded-[1.5rem] bg-background object-cover"
-                />
+      {/* Centred yellow panel */}
+      <div className="relative z-10 mx-auto w-[90%] max-w-[1280px]">
+        <div className="rounded-[2.5rem] bg-yellow px-6 py-12 sm:px-9 sm:py-16 lg:px-10 lg:py-16">
+          <div className="grid items-center gap-12 lg:grid-cols-[0.75fr_1.25fr] lg:gap-10">
+            {/* Left — exploded product image */}
+            <motion.div
+              initial={{ opacity: 0, x: -26 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, amount: 0.25 }}
+              transition={{ duration: 0.6 }}
+              className="mx-auto w-full max-w-[480px] lg:mx-0"
+            >
+              <div className="-rotate-[2deg] lg:-rotate-[3deg]">
+                <div className="overflow-hidden rounded-[1.5rem] border-2 border-text bg-white p-4 shadow-soft sm:p-5">
+                  <img
+                    src="/images/exploded.jpg"
+                    alt="Exploded view of the AwayStack showing the twist-lock lid, six frozen lick cups, frosted insulated tower, slide drawer, lick tray and the base with dial, flags and cup bin"
+                    width={687}
+                    height={1024}
+                    loading="lazy"
+                    decoding="async"
+                    className="block aspect-[2/3] w-full rounded-[0.75rem] bg-background object-cover"
+                  />
+                </div>
               </div>
-            </div>
-          </motion.div>
+            </motion.div>
 
-          {/* Right — heading, component labels, dishwasher line */}
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.25 }}
-            transition={{ duration: 0.6 }}
-          >
-            <h2 className="font-heading text-4xl font-bold leading-[1.08] tracking-tight text-text sm:text-5xl lg:text-[3.4rem]">
-              What&rsquo;s inside
-            </h2>
+            {/* Right — heading, component labels, dishwasher line */}
+            <motion.div
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.25 }}
+              transition={{ duration: 0.6 }}
+            >
+              <h2 className="font-heading text-4xl font-bold leading-[1.08] tracking-tight text-text sm:text-5xl lg:text-[3.4rem]">
+                What&rsquo;s inside
+              </h2>
 
-            <div className="mt-8 grid grid-cols-2 gap-2.5 sm:gap-3 lg:grid-cols-3">
-              {PARTS.map((part, i) => (
-                <motion.div
-                  key={part}
-                  initial={{ opacity: 0, y: 16 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.4 }}
-                  transition={{ duration: 0.45, delay: i * 0.06 }}
-                  className="rounded-2xl border-2 border-text/15 bg-background px-3 py-3 text-center text-xs font-bold leading-snug text-text shadow-card sm:px-4 sm:py-3.5 sm:text-sm"
-                >
-                  {part}
-                </motion.div>
-              ))}
-            </div>
+              <div className="mt-8 grid grid-cols-2 gap-2 sm:gap-2.5 lg:grid-cols-3">
+                {PARTS.map((part, i) => (
+                  <motion.div
+                    key={part}
+                    initial={{ opacity: 0, y: 16 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: 0.4 }}
+                    transition={{ duration: 0.45, delay: i * 0.06 }}
+                    className="rounded-2xl border-2 border-text/15 bg-background px-2 py-3 text-center text-[11px] font-bold leading-tight tracking-tight text-text shadow-card sm:px-2.5 sm:text-xs xl:text-[13px]"
+                  >
+                    {part}
+                  </motion.div>
+                ))}
+              </div>
 
-            <p className="mt-8 max-w-lg font-heading text-xl font-bold leading-snug text-text sm:text-2xl">
-              Every food part comes out for the dishwasher.
-            </p>
-            <p className="mt-3 max-w-lg text-xs leading-relaxed text-text/55">
-              A proposed product feature. Dishwasher compatibility and food-contact
-              safety have not been physically tested.
-            </p>
-          </motion.div>
+              <p className="mt-8 max-w-lg font-heading text-xl font-bold leading-snug text-text sm:text-2xl">
+                Every food part comes out for the dishwasher.
+              </p>
+              <p className="mt-3 max-w-lg text-xs leading-relaxed text-text/55">
+                A proposed product feature. Dishwasher compatibility and food-contact
+                safety have not been physically tested.
+              </p>
+            </motion.div>
+          </div>
         </div>
-      </Container>
+      </div>
     </section>
   );
 }
