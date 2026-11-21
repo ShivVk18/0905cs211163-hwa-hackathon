@@ -15,7 +15,7 @@ export function CartButton({ count = 0, onClick, className = '' }) {
     <button
       type="button"
       onClick={onClick}
-      aria-label={`Cart, ${count} items`}
+      aria-label={`Cart, ${count} ${count === 1 ? 'item' : 'items'}`}
       className={`relative grid h-10 w-10 place-items-center rounded-full border-2 border-text bg-white text-text transition-colors duration-200 hover:bg-peach hover:text-teal ${className}`}
     >
       {CART_ICON}

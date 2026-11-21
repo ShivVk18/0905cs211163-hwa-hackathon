@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { motion, AnimatePresence } from 'motion/react';
 import { Button } from './Button';
 import { CartButton } from './CartButton';
+import { useCart } from './CartProvider';
 
 const PAW_ICON = (
   <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
@@ -56,8 +57,9 @@ function scrollToSection(id) {
   return true;
 }
 
-export function Navbar({ cartCount = 0 }) {
+export function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { cartCount } = useCart();
 
   useEffect(() => {
     document.body.style.overflow = isMenuOpen ? 'hidden' : '';

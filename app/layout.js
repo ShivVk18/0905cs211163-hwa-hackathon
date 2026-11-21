@@ -1,6 +1,7 @@
 import './global.css';
 import { AnnouncementBar } from '@/components/AnnouncementBar';
 import { Navbar } from '@/components/Navbar';
+import { CartProvider } from '@/components/CartProvider';
 
 export const metadata = {
   title: 'AwayStack',
@@ -11,9 +12,11 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className="bg-background text-text">
-        <AnnouncementBar />
-        <Navbar />
-        {children}
+        <CartProvider>
+          <AnnouncementBar />
+          <Navbar />
+          {children}
+        </CartProvider>
       </body>
     </html>
   );

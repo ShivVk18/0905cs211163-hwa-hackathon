@@ -4,6 +4,8 @@ import { SetupSteps } from '@/components/SetupSteps';
 import { CalmCurve } from '@/components/CalmCurve';
 import { DayReport } from '@/components/DayReport';
 import { WhatsInside } from '@/components/WhatsInside';
+import { FlavourCups } from '@/components/FlavourCups';
+import { PickYourPack } from '@/components/PickYourPack';
 
 export default function Home() {
   return (
@@ -14,6 +16,8 @@ export default function Home() {
       <CalmCurve />
       <DayReport />
       <WhatsInside />
+      <FlavourCups />
+      <PickYourPack />
     </>
   );
 }
