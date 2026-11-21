@@ -1,1 +1,45 @@
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&family=DM+Sans:wght@400;500;600&display=swap");
+
 @import "tailwindcss";
+
+@theme {
+  --color-background: #FFF7ED;
+  --color-teal: #126D68;
+  --color-dark-teal: #103B38;
+  --color-peach: #F9D6C8;
+  --color-coral: #F1785B;
+  --color-yellow: #FFC94A;
+  --color-lavender: #A78BDA;
+  --color-text: #202B29;
+
+  --font-heading: "Quicksand", ui-sans-serif, system-ui, sans-serif;
+  --font-body: "DM Sans", ui-sans-serif, system-ui, sans-serif;
+
+  --radius-card: 1rem;
+  --radius-button: 0.75rem;
+  --radius-pill: 9999px;
+
+  --shadow-soft: 0 8px 24px -6px rgb(0 0 0 / 0.08);
+  --shadow-card: 0 4px 12px -2px rgb(0 0 0 / 0.06);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-background);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-feature-settings: "cv01", "cv02", "cv03";
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  letter-spacing: -0.02em;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
