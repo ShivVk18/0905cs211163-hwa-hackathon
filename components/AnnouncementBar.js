@@ -10,13 +10,13 @@ export function AnnouncementBar() {
       transition={{ duration: 0.35, ease: 'easeOut' }}
       className="bg-dark-teal px-4 py-2.5 text-center text-white"
     >
-      <p className="text-[11px] leading-5 font-body sm:text-xs md:text-sm">
+      <p className="flex flex-wrap items-center justify-center gap-x-1.5 text-[11px] leading-5 font-body sm:text-xs md:text-sm">
         <span className="whitespace-nowrap">Free delivery across India</span>
-        <span className="mx-1.5 text-white/45" aria-hidden="true">
+        <span className="text-white/45 max-sm:hidden" aria-hidden="true">
           ·
         </span>
         <span className="whitespace-nowrap">Cash on delivery</span>
-        <span className="mx-1.5 text-white/45" aria-hidden="true">
+        <span className="text-white/45 max-sm:hidden" aria-hidden="true">
           ·
         </span>
         <span className="whitespace-nowrap">30-day returns</span>
