@@ -21,8 +21,8 @@ export function ProductImage({
         alt={alt}
         width={width}
         height={height}
-        priority={priority}
         loading={priority ? 'eager' : 'lazy'}
+        fetchPriority={priority ? 'high' : 'auto'}
         decoding="async"
         className="block w-full h-full object-cover transition-transform duration-500 hover:scale-105 group-hover:scale-105"
       />

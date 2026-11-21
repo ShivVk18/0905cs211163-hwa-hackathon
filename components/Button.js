@@ -1,5 +1,6 @@
 'use client';
 
+import { Children, isValidElement } from 'react';
 import { motion } from 'motion/react';
 
 export const buttonVariants = {
@@ -31,6 +32,15 @@ const sizeStyles = {
   lg: 'px-7 py-3 text-lg',
 };
 
+const motionComponentCache = new Map();
+
+function getMotionComponent(type) {
+  if (!motionComponentCache.has(type)) {
+    motionComponentCache.set(type, motion.create(type));
+  }
+  return motionComponentCache.get(type);
+}
+
 export function Button({
   children,
   variant = 'primary',
@@ -40,19 +50,39 @@ export function Button({
   asChild = false,
   ...props
 }) {
-  const Comp = asChild ? motion.span : motion.button;
   const styles = buttonVariants[variant];
+  const baseClass = `inline-flex items-center justify-center gap-2 rounded-button font-medium transition-all duration-200 ${styles?.base ?? ''} ${sizeStyles[size] ?? sizeStyles.md} ${className}`;
+
+  const motionProps = {
+    whileHover: !disabled ? { scale: 1.02 } : undefined,
+    whileTap: !disabled ? { scale: 0.98 } : undefined,
+  };
+
+  if (asChild && isValidElement(children)) {
+    const child = Children.only(children);
+    const MotionChild = getMotionComponent(child.type);
+    const { className: childClassName, children: childChildren, ...childProps } = child.props;
+
+    return (
+      <MotionChild
+        {...childProps}
+        {...motionProps}
+        {...props}
+        className={`${baseClass} ${childClassName ?? ''}`}
+      >
+        {childChildren}
+      </MotionChild>
+    );
+  }
 
   return (
-    <Comp
-      asChild={asChild}
-      whileHover={!disabled ? { scale: 1.02 } : undefined}
-      whileTap={!disabled ? { scale: 0.98 } : undefined}
+    <motion.button
+      {...motionProps}
       disabled={disabled}
-      className={`inline-flex items-center justify-center gap-2 rounded-button font-medium transition-all duration-200 ${styles?.base ?? ''} ${sizeStyles[size]} ${className}`}
+      className={baseClass}
       {...props}
     >
       {children}
-    </Comp>
+    </motion.button>
   );
 }
