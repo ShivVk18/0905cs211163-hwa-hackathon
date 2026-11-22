@@ -19,13 +19,13 @@ function PackCard({ pack, isSelected, onSelect }) {
       type="button"
       onClick={() => onSelect(pack.id)}
       aria-pressed={isSelected}
-      className={`relative flex items-start justify-between gap-3 rounded-[2rem] border p-5 text-left transition-all duration-200 ${
+      className={`relative flex w-full items-start justify-between gap-3 rounded-[2rem] border p-5 text-left transition-all duration-200 ${
         isSelected
           ? 'border-teal bg-white shadow-card'
           : 'border-text/15 bg-background hover:border-text/40 hover:bg-background/70'
       }`}
     >
-      <div>
+      <div className="min-w-0 flex-1">
         <span className="block font-heading text-lg font-bold leading-snug text-text">
           {pack.name}
         </span>
@@ -36,13 +36,6 @@ function PackCard({ pack, isSelected, onSelect }) {
       <span className="shrink-0 font-heading text-xl font-bold text-teal">
         ₹{formatPrice(pack.price)}
       </span>
-      {isSelected && (
-        <span className="absolute top-4 right-4 flex h-6 w-6 items-center justify-center rounded-full border-2 border-text bg-teal">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4 text-white">
-            <polyline points="20 6 9 17 4 12" />
-          </svg>
-        </span>
-      )}
     </button>
   );
 }
@@ -83,38 +76,39 @@ function QtyControl({ value, onChange }) {
 function AddOnCard({ addOn, isSelected, qty, onToggle, onChangeQty }) {
   return (
     <div
-      className={`relative flex w-full flex-col gap-3 rounded-[2rem] border p-5 transition-all duration-200 sm:flex-row sm:items-center sm:justify-between sm:gap-4 ${
+      className={`relative flex w-full flex-col gap-3 rounded-[2rem] border p-5 transition-all duration-200 sm:flex-row sm:items-start sm:justify-between sm:gap-4 ${
         isSelected
           ? 'border-teal bg-teal/5 shadow-card'
           : 'border-text/15 bg-background/40 hover:border-text/40 hover:bg-background/70'
       }`}
     >
-      <div className="flex items-center gap-4 sm:flex-row sm:items-center sm:justify-between sm:gap-4">
-        <div className="flex items-center gap-4 shrink-0">
-          <button
-            type="button"
-            onClick={onToggle}
-            aria-pressed={isSelected}
-            className="relative flex h-7 w-7 items-center justify-center rounded-full border-2 border-text text-text transition-colors duration-200"
-          >
-            {isSelected ? (
-              <span className="text-[10px] font-bold text-white">✓</span>
-            ) : (
-              <span className="text-[10px] font-bold text-text/40">◯</span>
-            )}
-          </button>
-          <div className="flex min-w-0 flex-1 items-start gap-3 text-left">
-            <span className="block font-heading text-base font-bold leading-snug text-text">
-              {addOn.name}
-            </span>
-            <span className="mt-0.5 block text-sm leading-relaxed text-text/70">
-              {addOn.description}
-            </span>
-          </div>
-          <span className="shrink-0 font-heading text-base font-bold text-teal">
-            ₹{formatPrice(addOn.price)}
+      <div className="flex min-w-0 flex-1 items-start gap-3 sm:gap-4">
+        <button
+          type="button"
+          onClick={onToggle}
+          aria-pressed={isSelected}
+          aria-label={`Select ${addOn.name}`}
+          className="relative flex h-7 w-7 shrink-0 items-center justify-center rounded-full border-2 border-text text-text transition-colors duration-200"
+        >
+          {isSelected ? (
+            <span className="text-[10px] font-bold text-white">✓</span>
+          ) : (
+            <span className="text-[10px] font-bold text-text/40">◯</span>
+          )}
+        </button>
+        <div className="min-w-0 flex-1">
+          <span className="block font-heading text-base font-bold leading-snug text-text">
+            {addOn.name}
+          </span>
+          <span className="mt-0.5 block text-sm leading-relaxed text-text/70">
+            {addOn.description}
           </span>
         </div>
+      </div>
+      <div className="flex items-center justify-between gap-4 pl-10 sm:pl-0 sm:flex-col sm:items-end sm:shrink-0">
+        <span className="shrink-0 font-heading text-base font-bold text-teal">
+          ₹{formatPrice(addOn.price)}
+        </span>
         <QtyControl value={qty} onChange={(next) => onChangeQty(addOn.id, next)} />
       </div>
     </div>
