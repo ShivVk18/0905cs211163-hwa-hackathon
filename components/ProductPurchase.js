@@ -91,7 +91,7 @@ function AddOnCard({ addOn, isSelected, qty, onToggle, onChangeQty }) {
           className="relative flex h-7 w-7 shrink-0 items-center justify-center rounded-full border-2 border-text text-text transition-colors duration-200"
         >
           {isSelected ? (
-            <span className="text-[10px] font-bold text-white">✓</span>
+            <span className="text-[10px] font-bold text-text">✓</span>
           ) : (
             <span className="text-[10px] font-bold text-text/40">◯</span>
           )}

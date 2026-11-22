@@ -12,6 +12,9 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
+      <head>
+        <link rel="icon" href="/images/favicon.ico" />
+      </head>
       <body className="bg-background text-text">
         <CartProvider>
           <AnnouncementBar />
