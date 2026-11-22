@@ -56,12 +56,8 @@ export default function AwayStackPage() {
               onBuyNow={handleBuyNow}
             />
             <DeliveryChecker />
+            <TrustCards />
           </div>
-        </section>
-
-        {/* Trust strip — full page width */}
-        <section className="scroll-mt-24 py-6 sm:py-8">
-          <TrustCards />
         </section>
 
         {/* Information tabs — full page width */}
@@ -70,7 +66,7 @@ export default function AwayStackPage() {
         </section>
 
         {/* Lifestyle images — full page width */}
-        <section className="scroll-mt-24 py-20 sm:py-28">
+        <section className="scroll-mt-24 py-6 sm:py-8">
           <LifestyleImages />
         </section>
       </Container>

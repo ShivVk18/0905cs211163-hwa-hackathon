@@ -1,16 +1,8 @@
 'use client';
 
-import { motion } from 'motion/react';
-
 import { product } from '@/data/product';
 
 const { trust } = product;
-
-const TRUST_COLORS = [
-  { background: '#FBE0D4', wave: '#F5BFA6' },
-  { background: '#E7DDF7', wave: '#C9B6EC' },
-  { background: '#D9F0E4', wave: '#A9DCC4' },
-];
 
 const TruckIcon = () => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
@@ -42,11 +34,16 @@ export function TrustCards() {
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8">
           {trust.map((item, i) => {
             const Icon = ICON_MAP[item.icon];
-            const style = TRUST_COLORS[i % TRUST_COLORS.length];
+            const style =
+              i === 0
+                ? { background: '#FBE0D4', wave: '#F5BFA6' }
+                : i === 1
+                ? { background: '#E7DDF7', wave: '#C9B6EC' }
+                : { background: '#D9F0E4', wave: '#A9DCC4' };
             return (
               <div
                 key={item.name}
-                className="relative flex flex-col h-40 sm:h-44 overflow-hidden rounded-[2rem] border border-text/15 bg-white shadow-sm"
+                className="relative flex flex-col overflow-hidden rounded-[2rem] border border-text/15 bg-white shadow-sm"
               >
                 <div className="absolute inset-x-0 top-0 h-[36px] w-full">
                   <svg viewBox="0 0 400 24" preserveAspectRatio="none" className="absolute inset-0 h-full w-full">
@@ -59,9 +56,9 @@ export function TrustCards() {
                   </div>
                   <div className="flex-1">
                     <h4 className="font-heading text-base font-bold leading-snug text-text">
-                      {item.title || item.name}
+                      {item.title}
                     </h4>
-                    <p className="mt-0.5 text-sm font-medium text-text/70">{item.description}</p>
+                    <p className="mt-0.5 text-sm text-text/70">{item.description}</p>
                   </div>
                 </div>
               </div>
@@ -72,5 +69,3 @@ export function TrustCards() {
     </section>
   );
 }
-
-export default TrustCards;
