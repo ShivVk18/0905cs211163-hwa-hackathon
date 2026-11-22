@@ -108,24 +108,6 @@ export const product = {
       ],
     },
     {
-      id: 'whats-inside',
-      label: "What's inside",
-      image: {
-        src: '/images/exploded.jpg',
-        alt: 'Exploded view of AwayStack components',
-        width: 687,
-        height: 1024,
-      },
-      components: [
-        'Twist-lock lid',
-        'Six reusable cups',
-        'Insulated tower',
-        'Clockwork slide drawer',
-        'Lick Tray with trapdoor',
-        'Base with dial, flags and cup bin',
-      ],
-    },
-    {
       id: 'specs',
       label: 'Specs',
       specs: [

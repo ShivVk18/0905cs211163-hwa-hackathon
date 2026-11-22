@@ -247,24 +247,6 @@ export function InvoiceReceipt({ order }) {
     <div className="bg-background min-h-screen py-8 sm:py-12 px-4 sm:px-6 lg:px-8">
       <Container>
         <section className="max-w-2xl mx-auto">
-          {/* Invoice Header */}
-          <div className="mb-8 text-center">
-            <div className="inline-flex items-center gap-2">
-              <span className="grid h-8 w-8 place-items-center rounded-xl bg-teal text-white shadow-soft">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
-                  <path d="M12 3.5c2.8 0 4.8 2.8 4.8 5.6s-1.9 5.4-4.8 5.4-4.8-2.6-4.8-5.4S9.2 3.5 12 3.5Z" />
-                  <circle cx="7.6" cy="6.6" r="1.35" fill="currentColor" />
-                  <circle cx="11.6" cy="4.4" r="1.35" fill="currentColor" />
-                  <circle cx="15.6" cy="5.6" r="1.35" fill="currentColor" />
-                  <circle cx="17.4" cy="9.4" r="1.25" fill="currentColor" />
-                  <circle cx="6.2" cy="10.4" r="1.25" fill="currentColor" />
-                </svg>
-              </span>
-              <span className="font-heading text-2xl font-bold text-text tracking-tight">AwayStack</span>
-            </div>
-            <p className="text-sm text-text/60 mt-1">Frozen lick enrichment tower for dogs</p>
-          </div>
-
           {/* Invoice Title */}
           <div className="text-center mb-6">
             <h1 className="font-heading text-2xl font-bold leading-tight tracking-tight text-text">INVOICE</h1>

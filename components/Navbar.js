@@ -126,7 +126,7 @@ export function Navbar() {
             <div className="flex shrink-0 items-center gap-2 justify-self-end">
               <CartButton count={cartCount} onClick={handleCartClick} />
 
-              <Button variant="raised" size="sm" shape="pill" asChild className="text-white focus-visible:ring-2 focus-visible:ring-teal/50 focus-visible:ring-offset-2 focus-visible:ring-offset-teal focus-visible:outline-none">
+              <Button variant="raised" size="sm" shape="pill" asChild className="text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-mint focus-visible:ring-offset-2 focus-visible:ring-offset-background">
                 <Link href={PRODUCT_HREF}>Shop now</Link>
               </Button>
 
@@ -216,7 +216,7 @@ export function Navbar() {
             </ul>
 
             <div className="space-y-3 border-t border-peach/50 px-5 py-5">
-              <Button variant="raised" size="lg" shape="pill" asChild className="w-full">
+              <Button variant="raised" size="lg" shape="pill" asChild className="w-full text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-mint focus-visible:ring-offset-2 focus-visible:ring-offset-background">
                 <Link href={PRODUCT_HREF} onClick={closeMenu}>
                   Shop now
                 </Link>

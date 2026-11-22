@@ -85,38 +85,6 @@ function renderTabContent(tab) {
         </div>
       );
     }
-    case 'whats-inside': {
-      return (
-        <div className="grid grid-cols-1 gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:items-center lg:gap-12">
-          <div className="mx-auto w-full min-w-0 max-w-[420px] lg:mx-0">
-            <div className="relative aspect-[687/1024] overflow-hidden rounded-[2rem] border-2 border-text bg-white shadow-soft">
-              <img
-                src={tab.image.src}
-                alt={tab.image.alt}
-                width={tab.image.width}
-                height={tab.image.height}
-                loading="lazy"
-                decoding="async"
-                className="block h-full w-full object-cover"
-              />
-            </div>
-          </div>
-          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4">
-            {tab.components.map((component, i) => (
-              <div
-                key={i}
-                className="flex min-w-0 items-center gap-3 rounded-2xl border border-text/15 bg-background p-4 shadow-soft"
-              >
-                <span className="shrink-0 rounded-full border-2 border-text bg-background px-2 text-text font-bold text-sm leading-none">
-                  {i + 1}
-                </span>
-                <span className="min-w-0 text-text">{component}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-      );
-    }
     case 'specs': {
       return (
         <div className="rounded-[2rem] border border-text/15 bg-white p-5 shadow-soft sm:p-6 lg:p-8">
@@ -159,7 +127,7 @@ export function ProductTabs() {
   const tab = tabs.find((t) => t.id === activeTabId) ?? tabs[0];
 
   return (
-    <section id="product-tabs" className="scroll-mt-24 bg-background pt-20 sm:pt-28">
+    <section id="product-tabs" className="scroll-mt-24 bg-background pt-12">
       <Container>
         {/* Tab navigation */}
         <div className="flex flex-wrap items-center gap-2.5">
@@ -171,7 +139,7 @@ export function ProductTabs() {
                 type="button"
                 onClick={() => setActiveTabId(t.id)}
                 aria-pressed={isActive}
-                className={`inline-flex h-12 shrink-0 items-center justify-center rounded-full border-2 px-5 text-sm font-semibold transition-colors duration-200 ${
+                className={`inline-flex h-12 shrink-0 items-center justify-center rounded-full border-2 px-5 text-sm font-semibold transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-mint focus-visible:ring-offset-2 focus-visible:ring-offset-background ${
                   isActive
                     ? 'border-brand-teal bg-brand-teal text-white'
                     : 'border-ink bg-white text-ink hover:bg-sand'
