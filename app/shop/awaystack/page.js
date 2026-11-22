@@ -10,6 +10,7 @@ import { ProductPurchase } from '@/components/ProductPurchase';
 import { DeliveryChecker } from '@/components/DeliveryChecker';
 import { TrustCards } from '@/components/TrustCards';
 import { ProductTabs } from '@/components/ProductTabs';
+import { LifestyleImages } from '@/components/LifestyleImages';
 import { product } from '@/data/product';
 
 export default function AwayStackPage() {
@@ -37,6 +38,7 @@ export default function AwayStackPage() {
             <ProductTabs />
           </div>
         </div>
+        <LifestyleImages />
       </Container>
     </section>
   );
