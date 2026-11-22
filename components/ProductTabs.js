@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
 
 import { product } from '@/data/product';
 
@@ -36,7 +35,7 @@ function StepItem({ number, text }) {
 
 function SpecItem({ label, value }) {
   return (
-    <div className="flex flex-col gap-1">
+    <div className="flex flex-col gap-1 border-b border-text/10 pb-4 last:border-0 last:pb-0">
       <span className="text-sm text-text/60">{label}</span>
       <span className="text-base font-bold text-text">{value}</span>
     </div>
@@ -47,7 +46,7 @@ function renderTabContent(tab) {
   switch (tab.id) {
     case 'how-it-works': {
       return (
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start">
+        <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:items-center lg:gap-12">
           <div className="relative overflow-hidden rounded-[2rem] border-2 border-text bg-white shadow-soft aspect-[900/687]">
             <img
               src={tab.image.src}
@@ -63,7 +62,7 @@ function renderTabContent(tab) {
             <h2 className="font-heading text-3xl font-bold leading-tight tracking-tight text-text sm:text-4xl">
               {tab.heading}
             </h2>
-            <div className="mt-8 sm:mt-10 space-y-6">
+            <div className="mt-8 space-y-5 sm:mt-10 sm:space-y-6">
               {tab.steps.map((step, i) => (
                 <StepItem key={i} number={i + 1} text={step} />
               ))}
@@ -74,21 +73,26 @@ function renderTabContent(tab) {
     }
     case 'whats-inside': {
       return (
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start">
-          <div className="relative overflow-hidden rounded-[2rem] border-2 border-text bg-white shadow-soft aspect-[687/1024]">
-            <img
-              src={tab.image.src}
-              alt={tab.image.alt}
-              width={tab.image.width}
-              height={tab.image.height}
-              loading="lazy"
-              decoding="async"
-              className="block w-full h-full object-cover"
-            />
+        <div className="grid grid-cols-1 gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:items-center lg:gap-12">
+          <div className="mx-auto w-full max-w-[420px] lg:mx-0">
+            <div className="relative overflow-hidden rounded-[2rem] border-2 border-text bg-white shadow-soft aspect-[687/1024]">
+              <img
+                src={tab.image.src}
+                alt={tab.image.alt}
+                width={tab.image.width}
+                height={tab.image.height}
+                loading="lazy"
+                decoding="async"
+                className="block w-full h-full object-cover"
+              />
+            </div>
           </div>
-          <div className="grid grid-cols-1 gap-4">
+          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4">
             {tab.components.map((component, i) => (
-              <div key={i} className="flex items-center gap-4 rounded-2xl border border-text/15 bg-background p-4 shadow-soft">
+              <div
+                key={i}
+                className="flex items-center gap-3 rounded-2xl border border-text/15 bg-background p-4 shadow-soft"
+              >
                 <span className="shrink-0 rounded-full border-2 border-text bg-background px-2 text-text font-bold text-sm leading-none">
                   {i + 1}
                 </span>
@@ -101,8 +105,8 @@ function renderTabContent(tab) {
     }
     case 'specs': {
       return (
-        <div className="rounded-2xl border border-text/15 bg-background p-5 sm:p-6 shadow-soft">
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div className="rounded-2xl border border-text/15 bg-background p-5 sm:p-6 lg:p-8">
+          <div className="grid grid-cols-1 gap-x-8 gap-y-5 sm:grid-cols-2 lg:grid-cols-3">
             {tab.specs.map((spec) => (
               <SpecItem key={spec.label} label={spec.label} value={spec.value} />
             ))}
@@ -112,7 +116,7 @@ function renderTabContent(tab) {
     }
     case 'care-safety': {
       return (
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 lg:gap-6">
           {tab.cards.map((card, i) => (
             <div
               key={i}
@@ -144,9 +148,7 @@ export function ProductTabs() {
     <div id="product-tabs" className="space-y-10 sm:space-y-12">
       {/* Tab navigation */}
       <div className="relative">
-        <div
-          className="flex flex-col sm:flex-row gap-2 sm:gap-3 overflow-x-auto snap-x pb-2 sm:pb-0"
-        >
+        <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 overflow-x-auto snap-x pb-2 sm:pb-0">
           {tabs.map((t) => {
             const isActive = t.id === activeTabId;
             return (
@@ -169,18 +171,9 @@ export function ProductTabs() {
       </div>
 
       {/* Tab content */}
-      <AnimatePresence initial={false}>
-        <motion.div
-          key={activeTabId}
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: 10 }}
-          transition={{ duration: 0.3 }}
-          className="min-h-[300px]"
-        >
-          {renderTabContent(tab)}
-        </motion.div>
-      </AnimatePresence>
+      <div className="mt-8 sm:mt-10">
+        {renderTabContent(tab)}
+      </div>
     </div>
   );
 }

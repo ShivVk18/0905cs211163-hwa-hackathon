@@ -3,6 +3,7 @@
 import { useState } from 'react';
 
 import { Container } from '@/components/Container';
+import { useCart } from '@/components/CartProvider';
 
 import { ProductGallery } from '@/components/ProductGallery';
 import { ProductInfo } from '@/components/ProductInfo';
@@ -15,11 +16,29 @@ import { product } from '@/data/product';
 
 export default function AwayStackPage() {
   const [selectedId, setSelectedId] = useState(product.images[0].id);
+  const { cartCount } = useCart();
+
+  const handleBuyNow = (items, total) => {
+    sessionStorage.setItem(
+      'awaystack_checkout',
+      JSON.stringify({ items, total })
+    );
+    window.location.href = '/shop/awaystack/checkout';
+  };
+
+  const handleAddToCart = (items, total) => {
+    sessionStorage.setItem(
+      'awaystack_checkout',
+      JSON.stringify({ items, total })
+    );
+    window.location.href = '/shop/awaystack/checkout';
+  };
 
   return (
-    <section className="bg-background py-20 sm:py-28">
+    <main className="bg-background">
       <Container>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-start">
+        {/* Product — gallery and information side by side */}
+        <section className="scroll-mt-24 grid grid-cols-1 gap-10 lg:grid-cols-2 lg:items-start lg:gap-12 xl:gap-16">
           <ProductGallery
             images={product.images}
             selectedId={selectedId}
@@ -32,14 +51,29 @@ export default function AwayStackPage() {
               description={product.description}
               price={product.price}
             />
-            <ProductPurchase />
+            <ProductPurchase
+              onAddToCart={handleAddToCart}
+              onBuyNow={handleBuyNow}
+            />
             <DeliveryChecker />
-            <TrustCards />
-            <ProductTabs />
           </div>
-        </div>
-        <LifestyleImages />
+        </section>
+
+        {/* Trust strip — full page width */}
+        <section className="scroll-mt-24">
+          <TrustCards />
+        </section>
+
+        {/* Information tabs — full page width */}
+        <section className="scroll-mt-24">
+          <ProductTabs />
+        </section>
+
+        {/* Lifestyle images — full page width */}
+        <section className="scroll-mt-24">
+          <LifestyleImages />
+        </section>
       </Container>
-    </section>
+    </main>
   );
 }

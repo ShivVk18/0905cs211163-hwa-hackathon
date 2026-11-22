@@ -5,13 +5,13 @@ import { motion } from 'motion/react';
 
 import { Badge } from '@/components/Badge';
 
-export function ProductGallery({ images, selectedId, onSelect }) {
+export function ProductGallery({ images, selectedId, onSelect, className = '' }) {
   const selected = images.find((img) => img.id === selectedId) ?? images[0];
 
   return (
-    <div className="flex flex-col gap-5 sm:gap-6">
+    <div className={`flex flex-col gap-5 sm:gap-6 ${className}`}>
       {/* Main image */}
-      <div className="relative overflow-hidden rounded-[2rem] border-2 border-text bg-white shadow-soft aspect-[1/1] max-w-full">
+      <div className="relative overflow-hidden rounded-[2rem] border-2 border-text bg-white shadow-soft aspect-[4/3]">
         <Badge
           variant="peach"
           size="sm"
@@ -23,7 +23,7 @@ export function ProductGallery({ images, selectedId, onSelect }) {
           src={selected.src}
           alt={selected.alt}
           width={1024}
-          height={1024}
+          height={768}
           loading="lazy"
           decoding="async"
           className="block w-full h-full object-cover transition-opacity duration-300"
@@ -35,29 +35,29 @@ export function ProductGallery({ images, selectedId, onSelect }) {
         {images.map((img) => {
           const isSelected = img.id === selectedId;
           return (
-              <button
-                key={img.id}
-                type="button"
-                onClick={() => onSelect(img.id)}
-                aria-pressed={isSelected}
-                aria-label={`View ${img.alt}`}
-                className={`relative shrink-0 overflow-hidden rounded-xl border aspect-[1/1] w-10 h-10 sm:w-16 sm:h-16 transition-all duration-200 ${
-                  isSelected
-                    ? 'border-text shadow-card'
-                    : 'border-transparent hover:border-text/40'
-                } snap-start`}
+            <button
+              key={img.id}
+              type="button"
+              onClick={() => onSelect(img.id)}
+              aria-pressed={isSelected}
+              aria-label={`View ${img.alt}`}
+              className={`relative shrink-0 overflow-hidden rounded-xl border aspect-[1/1] w-10 h-10 sm:w-16 sm:h-16 transition-all duration-200 ${
+                isSelected
+                  ? 'border-text shadow-card'
+                  : 'border-transparent hover:border-text/40'
+              } snap-start`}
             >
               <img
                 src={img.src}
                 alt={img.alt}
                 width={1024}
-                height={1024}
+                height={768}
                 loading="lazy"
                 decoding="async"
                 className="block w-full h-full object-cover"
               />
               {isSelected && (
-                <div className="absolute inset-0 rounded-2xl border-2 border-text ring-2 ring-offset-1 ring-teal" />
+                <div className="absolute inset-0 rounded-xl border-2 border-text ring-2 ring-offset-1 ring-teal" />
               )}
             </button>
           );

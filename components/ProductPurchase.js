@@ -3,6 +3,7 @@
 import { useMemo, useState } from 'react';
 
 import { Button } from '@/components/Button';
+import { useCart } from '@/components/CartProvider';
 
 import { product } from '@/data/product';
 
@@ -21,7 +22,7 @@ function PackCard({ pack, isSelected, onSelect }) {
       className={`relative flex items-start justify-between gap-3 rounded-2xl border p-5 text-left transition-all duration-200 ${
         isSelected
           ? 'border-teal bg-teal/5 shadow-card'
-          : 'border-transparent hover:border-text/40 hover:bg-background/40'
+          : 'border-text/15 bg-background/40 hover:border-text/40 hover:bg-background/70'
       }`}
     >
       <div>
@@ -41,10 +42,7 @@ function PackCard({ pack, isSelected, onSelect }) {
 
 function QtyControl({ value, onChange }) {
   return (
-    <div
-      className="flex items-center gap-1"
-      onClick={(e) => e.stopPropagation()}
-    >
+    <div className="flex items-center gap-1">
       <button
         type="button"
         onClick={(e) => {
@@ -77,19 +75,22 @@ function QtyControl({ value, onChange }) {
 
 function AddOnCard({ addOn, isSelected, qty, onToggle, onChangeQty }) {
   return (
-    <button
-      type="button"
-      onClick={onToggle}
-      aria-pressed={isSelected}
-      className={`relative flex w-full items-center justify-between gap-4 rounded-2xl border p-5 text-left transition-all duration-200 ${
+    <div
+      className={`relative flex w-full flex-col gap-3 rounded-2xl border p-5 transition-all duration-200 sm:flex-row sm:items-center sm:justify-between sm:gap-4 ${
         isSelected
           ? 'border-teal bg-teal/5 shadow-card'
-          : 'border-transparent hover:border-text/40 hover:bg-background/40'
+          : 'border-text/15 bg-background/40 hover:border-text/40 hover:bg-background/70'
       }`}
     >
-      <div className="flex items-center gap-3">
+      <button
+        type="button"
+        onClick={onToggle}
+        aria-pressed={isSelected}
+        className="flex min-w-0 flex-1 items-start gap-3 text-left"
+      >
         <span
-          className={`relative shrink-0 h-6 w-6 rounded-full flex items-center justify-center text-xs font-bold transition-all duration-200 ${
+          aria-hidden="true"
+          className={`relative mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-xs font-bold transition-all duration-200 ${
             isSelected
               ? 'border-teal bg-teal text-white'
               : 'border-text/30 bg-background text-text/40'
@@ -97,20 +98,22 @@ function AddOnCard({ addOn, isSelected, qty, onToggle, onChangeQty }) {
         >
           {isSelected ? '✓' : ''}
         </span>
-        <div>
+        <span className="block min-w-0 flex-1">
           <span className="block font-heading text-base font-bold leading-snug text-text">
             {addOn.name}
           </span>
           <span className="mt-0.5 block text-sm leading-relaxed text-text/70">
             {addOn.description}
           </span>
-        </div>
+        </span>
         <span className="shrink-0 font-heading text-base font-bold text-teal">
           ₹{formatPrice(addOn.price)}
         </span>
+      </button>
+      <div className="flex justify-end sm:justify-start">
+        <QtyControl value={qty} onChange={(next) => onChangeQty(addOn.id, next)} />
       </div>
-      <QtyControl value={qty} onChange={(next) => onChangeQty(addOn.id, next)} />
-    </button>
+    </div>
   );
 }
 
@@ -167,7 +170,17 @@ export function ProductPurchase({ onAddToCart, onBuyNow }) {
 
   const total = pack.price + addOnsTotal;
 
+  const { cartCount, addToCart } = useCart();
+
   const handleAddToCart = () => {
+    addToCart({ id: pack.id, name: pack.name, price: pack.price, quantity: 1 });
+    [...selectedAddOnIds].forEach((id) => {
+      const a = addOns.find((x) => x.id === id);
+      addToCart({ id: a.id, name: a.name, price: a.price, quantity: quantities[id] ?? 1 });
+    });
+  };
+
+  const handleBuyNow = () => {
     const lineItems = [
       { id: pack.id, name: pack.name, price: pack.price, quantity: 1 },
       ...[...selectedAddOnIds].map((id) => {
@@ -175,11 +188,7 @@ export function ProductPurchase({ onAddToCart, onBuyNow }) {
         return { id: a.id, name: a.name, price: a.price, quantity: quantities[id] ?? 1 };
       }),
     ];
-    if (onAddToCart) onAddToCart(lineItems, total);
-  };
-
-  const handleBuyNow = () => {
-    if (onBuyNow) onBuyNow(total);
+    if (onBuyNow) onBuyNow(lineItems, total);
   };
 
   return (
@@ -229,7 +238,7 @@ export function ProductPurchase({ onAddToCart, onBuyNow }) {
       </div>
 
       {/* Price summary */}
-      <div className="rounded-2xl border border-text/15 bg-background p-5 sm:p-6">
+      <div className="rounded-2xl border border-text/15 bg-background p-5 sm:p-6 shadow-soft">
         <div className="flex items-baseline justify-between text-sm sm:text-base">
           <span className="text-text/70">Pack</span>
           <span className="font-heading text-teal font-bold">₹{formatPrice(pack.price)}</span>

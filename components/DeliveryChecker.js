@@ -52,10 +52,8 @@ export function DeliveryChecker() {
     setStatus('available');
   };
 
-  const isValid = PIN_REGEX.test(pin);
-
   return (
-    <div className="rounded-2xl border border-text/15 bg-background p-5 sm:p-6 shadow-soft">
+    <section className="scroll-mt-24 rounded-2xl border border-text/15 bg-background p-5 sm:p-6 shadow-soft">
       <h3 className="font-heading text-lg font-bold leading-snug text-text sm:text-xl">
         {delivery.heading}
       </h3>
@@ -64,7 +62,10 @@ export function DeliveryChecker() {
           type="text"
           maxLength="6"
           value={pin}
-          onChange={handleInput}
+          onChange={(event) => {
+            setPin(event.target.value);
+            setStatus('idle');
+          }}
           placeholder={delivery.inputPlaceholder}
           className="flex-1 rounded-button border border-text px-4 py-3 text-text sm:py-2.5 transition-colors duration-200 focus:outline-2 focus:outline-offset-2 focus:outline-teal"
         />
@@ -88,7 +89,7 @@ export function DeliveryChecker() {
           {delivery.unavailableMessage}
         </p>
       )}
-    </div>
+    </section>
   );
 }
 

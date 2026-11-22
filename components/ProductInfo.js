@@ -20,7 +20,7 @@ export function ProductInfo({ badges, name, description, price }) {
       </div>
 
       {/* Title */}
-      <h1 className="font-heading text-4xl font-bold leading-tight tracking-tight text-text sm:text-5xl">
+      <h1 className="font-heading text-[2.1rem] font-bold leading-[1.05] tracking-tight text-text sm:text-5xl lg:text-[3.1rem] xl:text-[3.4rem]">
         {name}
       </h1>
 
