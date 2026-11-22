@@ -6,6 +6,7 @@ import { Container } from '@/components/Container';
 
 import { ProductGallery } from '@/components/ProductGallery';
 import { ProductInfo } from '@/components/ProductInfo';
+import { ProductPurchase } from '@/components/ProductPurchase';
 import { product } from '@/data/product';
 
 export default function AwayStackPage() {
@@ -20,12 +21,15 @@ export default function AwayStackPage() {
             selectedId={selectedId}
             onSelect={setSelectedId}
           />
-          <ProductInfo
-            badges={product.badges}
-            name={product.name}
-            description={product.description}
-            price={product.price}
-          />
+          <div className="flex flex-col gap-8 sm:gap-10">
+            <ProductInfo
+              badges={product.badges}
+              name={product.name}
+              description={product.description}
+              price={product.price}
+            />
+            <ProductPurchase />
+          </div>
         </div>
       </Container>
     </section>

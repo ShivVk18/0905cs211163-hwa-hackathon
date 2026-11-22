@@ -37,6 +37,34 @@ export const product = {
   badges: ['No battery', 'No app', 'Dishwasher-safe food parts'],
   description:
     'Six frozen lick cups, served one at a time while you are out. Wind the dial in the morning, read the Day Report flags when you are home.',
+  packs: [
+    {
+      id: 'awaystack',
+      name: 'AwayStack',
+      price: 1499,
+      description: 'Tower, lick tray, scent band and 6 reusable cups.',
+    },
+    {
+      id: 'starter-kit',
+      name: 'Starter Kit',
+      price: 1999,
+      description: 'Everything in AwayStack, plus 12 flavour cups and a cup mould.',
+    },
+  ],
+  addOns: [
+    {
+      id: 'refill',
+      name: 'Flavour cup refill',
+      price: 399,
+      description: '12 frozen cups with different flavours.',
+    },
+    {
+      id: 'scent-band',
+      name: 'Spare scent band',
+      price: 249,
+      description: 'A spare band so you can swap while the other one is being cleaned.',
+    },
+  ],
 };
 
 export default product;
