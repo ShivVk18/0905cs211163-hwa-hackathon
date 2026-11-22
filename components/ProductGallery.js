@@ -31,7 +31,7 @@ export function ProductGallery({ images, selectedId, onSelect, className = '' })
       </div>
 
       {/* Thumbnails */}
-      <div className="flex gap-3 sm:gap-4 overflow-x-auto pb-2 sm:pb-0 sm:overflow-visible sm:flex-wrap snap-start">
+      <div className="flex flex-wrap gap-2 sm:flex-nowrap sm:gap-4 snap-start">
         {images.map((img) => {
           const isSelected = img.id === selectedId;
           return (
@@ -41,12 +41,12 @@ export function ProductGallery({ images, selectedId, onSelect, className = '' })
                 onClick={() => onSelect(img.id)}
                 aria-pressed={isSelected}
                 aria-label={`View ${img.alt}`}
-                className={`relative shrink-0 overflow-hidden rounded-xl border aspect-[1/1] w-10 h-10 sm:w-auto sm:h-16 sm:flex-1 transition-all duration-200 ${
+                className={`relative h-10 w-10 shrink-0 overflow-hidden rounded-xl border aspect-[1/1] sm:h-16 sm:w-auto sm:flex-1 transition-all duration-200 ${
                   isSelected
                     ? 'border-text shadow-card'
                     : 'border-transparent hover:border-text/40'
                 } snap-start`}
-            >
+              >
               <img
                 src={img.src}
                 alt={img.alt}
