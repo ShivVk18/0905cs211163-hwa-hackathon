@@ -31,7 +31,7 @@ export function Footer() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Brand statement */}
         <p className="font-heading text-[2.75rem] font-bold leading-[0.98] tracking-tight text-white sm:text-6xl lg:text-8xl">
-          Happy while <span className="text-yellow">away</span>
+          AwayStack <span className="text-yellow">Stack</span>
         </p>
 
         {/* Nav row */}
@@ -44,11 +44,11 @@ export function Footer() {
               if (link.type === 'section') {
                 const id = link.href.slice(1);
                 return (
-                  <a
+                    <a
                     key={link.name}
                     href={link.href}
                     onClick={(event) => handleSectionClick(event, id)}
-                    className="text-sm font-medium text-white/85 transition-colors duration-200 hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
+                    className="text-sm font-medium text-white transition-colors duration-200 hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
                   >
                     {link.name}
                   </a>
@@ -59,7 +59,7 @@ export function Footer() {
                 <a
                   key={link.name}
                   href={link.href}
-                  className="text-sm font-medium text-white/85 transition-colors duration-200 hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
+                  className="text-sm font-medium text-white transition-colors duration-200 hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
                 >
                   {link.name}
                 </a>
