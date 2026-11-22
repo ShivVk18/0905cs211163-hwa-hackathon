@@ -256,7 +256,7 @@ export function CalmCurve() {
       : 'Every session spaced at an even interval from 9 am to 5 pm, so the day follows a predictable rhythm they can learn.';
 
   return (
-    <section id="calm-curve" className="relative scroll-mt-28 bg-background pb-20 sm:pb-28">
+    <section id="calm-curve" className="relative scroll-mt-28 bg-background pb-16 sm:pb-20">
       <Container>
         <motion.div
           initial={{ opacity: 0, y: 24 }}

@@ -72,7 +72,7 @@ export function HowItWorks() {
       </div>
 
       <Container>
-        <div className="relative z-10 pb-20 pt-24 sm:pb-28 sm:pt-32">
+        <div className="relative z-10 pb-16 pt-16 sm:pb-20 sm:pt-24 lg:pb-20 lg:pt-24">
           {/* Heading */}
           <motion.div
             initial={{ opacity: 0, y: 18 }}

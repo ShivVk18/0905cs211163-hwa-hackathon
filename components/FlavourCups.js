@@ -17,7 +17,7 @@ const FLAVOUR_STYLES = [
 
 export function FlavourCups() {
   return (
-    <section id="flavour-cups" className="relative scroll-mt-28 bg-background py-20 sm:py-28">
+    <section id="flavour-cups" className="relative scroll-mt-28 bg-background py-16 sm:py-20">
       <Container>
         {/* Heading */}
         <motion.div

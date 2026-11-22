@@ -34,7 +34,7 @@ function PawPrint() {
 
 export function WhatsInside() {
   return (
-    <section className="relative overflow-hidden bg-background py-16 sm:py-24">
+    <section id="whats-inside" className="relative overflow-hidden bg-background py-14 sm:py-16 lg:py-20">
       <PawPrint />
 
       {/* Centred yellow panel */}

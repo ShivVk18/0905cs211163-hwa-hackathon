@@ -48,7 +48,7 @@ export function PickYourPack() {
   };
 
   return (
-    <section id="pick-your-pack" className="relative scroll-mt-28 bg-background py-20 sm:py-28">
+    <section id="pick-your-pack" className="relative scroll-mt-28 bg-background py-16 sm:py-20">
       <Container>
         <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
           {/* Left — the complete kit */}

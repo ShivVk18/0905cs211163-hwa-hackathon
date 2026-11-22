@@ -26,7 +26,7 @@ export function Faq() {
   };
 
   return (
-    <section id="faq" className="scroll-mt-28 bg-background py-20 sm:py-28">
+    <section id="faq" className="scroll-mt-28 bg-background py-16 sm:py-20">
       <div className="mx-auto max-w-[1050px] px-4 sm:px-6">
         {/* Heading */}
         <motion.div

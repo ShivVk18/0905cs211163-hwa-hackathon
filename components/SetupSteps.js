@@ -31,7 +31,7 @@ const STEPS = [
 
 export function SetupSteps() {
   return (
-    <section id="setup" className="relative scroll-mt-28 bg-background py-20 sm:py-28">
+    <section id="setup" className="relative scroll-mt-28 bg-background py-16 sm:py-20">
       <Container>
         {/* Heading */}
         <motion.div

@@ -39,7 +39,7 @@ const navLinks = [
   { name: 'How it works', href: '#how-it-works', type: 'section' },
   { name: 'Calm Curve', href: '#calm-curve', type: 'section' },
   { name: 'Day Report', href: '#day-report', type: 'section' },
-  { name: 'Shop', href: PRODUCT_HREF, type: 'route' },
+  { name: 'What\'s Inside', href: '#whats-inside', type: 'section' },
   { name: 'FAQ', href: '#faq', type: 'section' },
 ];
 
@@ -77,7 +77,7 @@ export function Navbar() {
 
   return (
     <>
-      <header className="sticky top-0 z-50 bg-background px-3 pb-3 pt-3 sm:px-4">
+      <header className="sticky top-3 z-50 px-3 sm:px-4">
         <nav
           aria-label="Main navigation"
           className="mx-auto max-w-6xl rounded-full border-2 border-text bg-background/95 shadow-soft backdrop-blur-md"
@@ -98,7 +98,7 @@ export function Navbar() {
             </Link>
 
             {/* Centre — nav links inside a soft cream pill */}
-            <ul className="hidden items-center gap-1 justify-self-center rounded-full bg-peach/40 px-2 py-1.5 lg:flex">
+            <ul className="hidden items-center gap-1 justify-self-center lg:flex">
               {navLinks.map((link) => (
                 <li key={link.name}>
                   {link.type === 'section' ? (

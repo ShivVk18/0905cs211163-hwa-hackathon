@@ -138,7 +138,7 @@ function WaveTop({ color, background }) {
 
 export function SafeByDesign() {
   return (
-    <section id="safe-by-design" className="bg-background pt-20 pb-24 sm:pt-24 sm:pb-32">
+    <section id="safe-by-design" className="bg-background pt-14 pb-16 sm:pt-16 sm:pb-20">
       <Container>
         {/* Heading */}
         <motion.div

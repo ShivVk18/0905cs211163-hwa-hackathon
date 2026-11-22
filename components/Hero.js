@@ -94,7 +94,7 @@ export function Hero() {
       </div>
 
       <Container>
-        <div className="grid items-center gap-14 pt-10 pb-14 sm:pt-16 lg:grid-cols-[52fr_48fr] lg:gap-8 lg:pt-16 lg:pb-24">
+        <div className="grid items-center gap-14 pt-10 pb-12 sm:pt-14 sm:pb-16 lg:grid-cols-[52fr_48fr] lg:gap-8 lg:pt-16 lg:pb-20">
           {/* Left — content */}
           <motion.div
             initial={{ opacity: 0, x: -28 }}
@@ -191,7 +191,7 @@ export function Hero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.5 }}
-          className="flex flex-col items-center gap-2 pb-10 text-center lg:pb-14"
+          className="flex flex-col items-center gap-2 pb-6 text-center lg:pb-10"
         >
           <motion.span
             animate={{ y: [0, 5, 0] }}

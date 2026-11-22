@@ -6,7 +6,7 @@ import { Badge } from '@/components/Badge';
 
 export function WelcomeHomeBanner() {
   return (
-    <section id="welcome-home" className="bg-background pt-16 pb-12 sm:pt-20 sm:pb-16">
+    <section id="welcome-home" className="bg-background pt-12 pb-10 sm:pt-14 sm:pb-14">
       <div className="mx-auto w-[90%] max-w-[1280px]">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
