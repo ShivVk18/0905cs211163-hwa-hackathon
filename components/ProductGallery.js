@@ -9,7 +9,7 @@ export function ProductGallery({ images, selectedId, onSelect, className = '' })
   const selected = images.find((img) => img.id === selectedId) ?? images[0];
 
   return (
-    <div className={`flex flex-col gap-5 sm:gap-6 lg:sticky lg:top-[4rem] lg:max-h-[calc(100vh-4rem)] lg:overflow-y-auto ${className}`}>
+    <div className={`flex flex-col gap-5 sm:gap-6 lg:sticky lg:top-[6.5rem] lg:max-h-[calc(100vh-7rem)] lg:overflow-y-auto ${className}`}>
       {/* Main image */}
       <div className="relative overflow-hidden rounded-[2rem] border-2 border-text bg-white shadow-soft aspect-[1/1]">
         <Badge

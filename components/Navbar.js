@@ -77,7 +77,7 @@ export function Navbar() {
 
   return (
     <>
-      <header className="sticky top-3 z-50 px-3 sm:px-4">
+      <header className="sticky top-0 z-50 bg-background px-3 pb-3 pt-3 sm:px-4">
         <nav
           aria-label="Main navigation"
           className="mx-auto max-w-6xl rounded-full border-2 border-text bg-background/95 shadow-soft backdrop-blur-md"
