@@ -9,6 +9,7 @@ import { ProductInfo } from '@/components/ProductInfo';
 import { ProductPurchase } from '@/components/ProductPurchase';
 import { DeliveryChecker } from '@/components/DeliveryChecker';
 import { TrustCards } from '@/components/TrustCards';
+import { ProductTabs } from '@/components/ProductTabs';
 import { product } from '@/data/product';
 
 export default function AwayStackPage() {
@@ -33,6 +34,7 @@ export default function AwayStackPage() {
             <ProductPurchase />
             <DeliveryChecker />
             <TrustCards />
+            <ProductTabs />
           </div>
         </div>
       </Container>

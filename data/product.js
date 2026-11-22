@@ -90,6 +90,86 @@ export const product = {
       icon: 'rupee',
     },
   ],
+  tabs: [
+    {
+      id: 'how-it-works',
+      label: 'How it works',
+      image: {
+        src: '/images/inuse.jpg',
+        alt: 'A dog using the AwayStack lick dispenser',
+        width: 900,
+        height: 687,
+      },
+      heading: 'Wind it. Leave it. It serves.',
+      steps: [
+        'Stack six frozen cups and close the lid.',
+        'Turn the dial to 2, 4, 6 or 8 hours and select Calm Curve or Even spacing.',
+        'At each session, the old cup drops into the bin, a fresh one slides into the tray, and a flag pops up.',
+      ],
+    },
+    {
+      id: 'whats-inside',
+      label: "What's inside",
+      image: {
+        src: '/images/exploded.jpg',
+        alt: 'Exploded view of AwayStack components',
+        width: 687,
+        height: 1024,
+      },
+      components: [
+        'Twist-lock lid',
+        'Six reusable cups',
+        'Insulated tower',
+        'Clockwork slide drawer',
+        'Lick Tray with trapdoor',
+        'Base with dial, flags and cup bin',
+      ],
+    },
+    {
+      id: 'specs',
+      label: 'Specs',
+      specs: [
+        { label: 'Height', value: '30 cm' },
+        { label: 'Base width', value: '22 cm' },
+        { label: 'Weight', value: '1.4 kg' },
+        { label: 'Cups', value: '6 × 120 ml, reusable' },
+        { label: 'Timer', value: 'Wind-up clock spring, 2 / 4 / 6 / 8 hours' },
+        { label: 'Modes', value: 'Calm Curve or Even spacing' },
+        { label: 'Materials', value: 'BPA-free food-grade plastic and silicone' },
+        { label: 'Cleaning', value: 'Food parts designed for dishwasher cleaning' },
+      ],
+    },
+    {
+      id: 'care-safety',
+      label: 'Care & safety',
+      cards: [
+        {
+          title: 'Safe for alone time',
+          text: 'Introduce the product gradually and supervise initial sessions.',
+          background: '#FBE0D4',
+          wave: '#F5BFA6',
+        },
+        {
+          title: 'Food stays fresh',
+          text: 'Keep prepared cups frozen until loading and follow appropriate food-storage practices.',
+          background: '#E7DDF7',
+          wave: '#C9B6EC',
+        },
+        {
+          title: 'First week',
+          text: 'Start with short sessions and observe how your dog interacts with the dispenser.',
+          background: '#D9F0E4',
+          wave: '#A9DCC4',
+        },
+        {
+          title: 'Dog-safe fillings only',
+          text: 'Use ingredients suitable for your dog and account for individual dietary needs.',
+          background: '#FDEFC4',
+          wave: '#F7DC8A',
+        },
+      ],
+    },
+  ],
 };
 
 export default product;
