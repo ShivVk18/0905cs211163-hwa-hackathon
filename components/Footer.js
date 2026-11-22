@@ -31,7 +31,7 @@ export function Footer() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Brand statement */}
         <p className="font-heading text-[2.75rem] font-bold leading-[0.98] tracking-tight text-white sm:text-6xl lg:text-8xl">
-          AwayStack <span className="text-yellow">Stack</span>
+          <span className="text-white">Away</span><span className="text-yellow">Stack</span>
         </p>
 
         {/* Nav row */}
