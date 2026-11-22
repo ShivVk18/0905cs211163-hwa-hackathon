@@ -6,6 +6,8 @@ import { DayReport } from '@/components/DayReport';
 import { WhatsInside } from '@/components/WhatsInside';
 import { FlavourCups } from '@/components/FlavourCups';
 import { PickYourPack } from '@/components/PickYourPack';
+import { WelcomeHomeBanner } from '@/components/WelcomeHomeBanner';
+import { SafeByDesign } from '@/components/SafeByDesign';
 
 export default function Home() {
   return (
@@ -18,6 +20,8 @@ export default function Home() {
       <WhatsInside />
       <FlavourCups />
       <PickYourPack />
+      <WelcomeHomeBanner />
+      <SafeByDesign />
     </>
   );
 }
