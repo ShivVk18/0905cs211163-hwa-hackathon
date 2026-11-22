@@ -110,10 +110,10 @@ export function OrderConfirmation({ order }) {
                 variant="outlineDark"
                 size="lg"
                 shape="pill"
-                onClick={() => {}}
+                asChild
                 className="w-full sm:w-auto"
               >
-                Continue Shopping
+                <Link href="/shop/awaystack">Continue Shopping</Link>
               </Button>
             </div>
           </div>
