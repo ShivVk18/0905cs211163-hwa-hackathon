@@ -2,6 +2,7 @@ import './global.css';
 import { AnnouncementBar } from '@/components/AnnouncementBar';
 import { Navbar } from '@/components/Navbar';
 import { CartProvider } from '@/components/CartProvider';
+import { Footer } from '@/components/Footer';
 
 export const metadata = {
   title: 'AwayStack',
@@ -16,6 +17,7 @@ export default function RootLayout({ children }) {
           <AnnouncementBar />
           <Navbar />
           {children}
+          <Footer />
         </CartProvider>
       </body>
     </html>

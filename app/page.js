@@ -8,6 +8,7 @@ import { FlavourCups } from '@/components/FlavourCups';
 import { PickYourPack } from '@/components/PickYourPack';
 import { WelcomeHomeBanner } from '@/components/WelcomeHomeBanner';
 import { SafeByDesign } from '@/components/SafeByDesign';
+import { Faq } from '@/components/Faq';
 
 export default function Home() {
   return (
@@ -22,6 +23,7 @@ export default function Home() {
       <PickYourPack />
       <WelcomeHomeBanner />
       <SafeByDesign />
+      <Faq />
     </>
   );
 }
