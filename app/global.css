@@ -44,3 +44,35 @@ a {
   color: inherit;
   text-decoration: none;
 }
+
+@page {
+  margin: 15mm;
+}
+
+@media print {
+  body {
+    background-color: #fff;
+    color: #202B29;
+    font-family: var(--font-body);
+  }
+
+  .no-print {
+    display: none !important;
+  }
+
+  .no-print * {
+    display: none !important;
+  }
+
+  .bg-background {
+    background-color: #fff !important;
+  }
+
+  .shadow-soft {
+    box-shadow: none !important;
+  }
+
+  .shadow-card {
+    box-shadow: none !important;
+  }
+}

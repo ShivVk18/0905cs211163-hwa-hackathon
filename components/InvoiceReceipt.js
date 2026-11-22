@@ -7,9 +7,6 @@ import jsPDF from 'jspdf';
 import { Button } from '@/components/Button';
 import { PawCertifiedSeal } from '@/components/PawCertifiedSeal';
 import { Container } from '@/components/Container';
-import { product } from '@/data/product';
-
-const { packs, addOns } = product;
 
 function formatPrice(price) {
   return price.toLocaleString('en-IN');
@@ -29,6 +26,17 @@ function formatTime(dateStr) {
     minute: '2-digit',
   });
 }
+
+// AwayStack brand colours
+const COLOURS = {
+  teal: [18, 109, 104],      // #126D68
+  darkTeal: [16, 59, 56],    // #103B38
+  coral: [241, 120, 91],     // #F1785B
+  yellow: [255, 201, 74],    // #FFC94A
+  cream: [255, 247, 237],    // #FFF7ED
+  textDark: [32, 43, 41],    // #202B29
+  textMuted: [100, 100, 100],
+};
 
 export function InvoiceReceipt({ order }) {
   const receiptRef = useRef(null);
@@ -53,148 +61,179 @@ export function InvoiceReceipt({ order }) {
         orientation: 'portrait',
       });
 
-      const pageWidth = pdf.internal.pageSize.getWidth();
-      const pageHeight = pdf.internal.pageSize.getHeight();
-      const margin = 20;
-      const contentWidth = pageWidth - margin * 2;
+      const pageWidth = pdf.internal.pageSize.getWidth(); // 210mm
+      const pageHeight = pdf.internal.pageSize.getHeight(); // 297mm
+      const margin = 15;
+      const contentWidth = pageWidth - margin * 2; // 180mm
       let y = margin;
 
-      // Header
+      // Helper: add section separator line
+      const addSectionLine = () => {
+        pdf.setDrawColor(16, 109, 104); // teal
+        pdf.setLineWidth(0.5);
+        pdf.line(margin, y, margin + contentWidth, y);
+        y += 8;
+      };
+
+      // ── Brand header ──
       pdf.setFont('helvetica', 'bold');
       pdf.setFontSize(20);
-      pdf.setTextColor(16, 109, 104); // teal
+      pdf.setTextColor(...COLOURS.teal);
       pdf.text('AwayStack', margin, y);
-      y += 10;
-
-      pdf.setFont('helvetica', 'normal');
-      pdf.setFontSize(10);
-      pdf.setTextColor(100, 100, 100);
-      pdf.text('Frozen lick enrichment tower for dogs', margin, y);
-      y += 15;
-
-      // Invoice title
-      pdf.setFont('helvetica', 'bold');
-      pdf.setFontSize(16);
-      pdf.setTextColor(32, 43, 41); // text-text
-      pdf.text('INVOICE', margin, y);
-      y += 10;
-
-      // Invoice number badge
-      pdf.setFont('helvetica', 'bold');
-      pdf.setFontSize(9);
-      pdf.setTextColor(16, 109, 104);
-      pdf.text(`Invoice #${order.id}`, margin, y);
-      pdf.setFontSize(9);
-      pdf.setTextColor(100, 100, 100);
-      pdf.text(`Date: ${formatDate(order.date)}`, margin + 50, y);
-      pdf.text(`Time: ${formatTime(order.date)}`, margin + 100, y);
-      y += 15;
-
-      // Customer info and order details side by side
-      pdf.setFont('helvetica', 'bold');
-      pdf.setFontSize(10);
-      pdf.setTextColor(16, 109, 104);
-      pdf.text('Bill To', margin, y);
-      pdf.text('Order Details', margin + contentWidth / 2, y);
       y += 7;
 
       pdf.setFont('helvetica', 'normal');
       pdf.setFontSize(9);
-      pdf.setTextColor(32, 43, 41);
+      pdf.setTextColor(...COLOURS.textMuted);
+      pdf.text('Frozen lick enrichment tower for dogs', margin, y);
+      y += 6;
+
+      pdf.setDrawColor(...COLOURS.teal);
+      pdf.setLineWidth(0.7);
+      pdf.line(margin, y, margin + contentWidth, y);
+      y += 10;
+
+      // ── Invoice title block ──
+      pdf.setFont('helvetica', 'bold');
+      pdf.setFontSize(16);
+      pdf.setTextColor(...COLOURS.textDark);
+      pdf.text('INVOICE', margin, y);
+
+      pdf.setFont('helvetica', 'bold');
+      pdf.setFontSize(10);
+      pdf.setTextColor(...COLOURS.teal);
+      pdf.text(`INV-${order.id}`, margin, y + 8);
+
+      pdf.setFont('helvetica', 'normal');
+      pdf.setFontSize(9);
+      pdf.setTextColor(...COLOURS.textMuted);
+      pdf.text(`Date: ${formatDate(order.date)}`, margin + contentWidth - 50, y);
+      y += 8;
+
+      pdf.setTextColor(...COLOURS.textMuted);
+      pdf.text(`Time: ${formatTime(order.date)}`, margin + contentWidth - 50, y);
+      y += 12;
+
+      // ── Bill To & Order Details (two columns) ──
+      pdf.setFont('helvetica', 'bold');
+      pdf.setFontSize(9);
+      pdf.setTextColor(...COLOURS.teal);
+      pdf.text('Bill To', margin, y);
+      pdf.text('Order Details', margin + contentWidth / 2, y);
+      y += 6;
+
+      pdf.setFont('helvetica', 'normal');
+      pdf.setFontSize(9);
+      pdf.setTextColor(...COLOURS.textDark);
+
+      // Left column - Bill To
       pdf.text(order.customerName, margin, y);
-      pdf.text(`#${order.id}`, margin + contentWidth / 2, y);
-      y += 6;
-
+      y += 5;
       pdf.text(order.email, margin, y);
-      pdf.text(formatDate(order.date), margin + contentWidth / 2, y);
-      y += 6;
-
+      y += 5;
       pdf.text(order.phone, margin, y);
-      pdf.text(formatTime(order.date), margin + contentWidth / 2, y);
-      y += 6;
+      y += 5;
+
+      // Right column - Order Details
+      pdf.text(`Order #${order.id}`, margin + contentWidth / 2, y - 21);
+      pdf.text(formatDate(order.date), margin + contentWidth / 2, y - 14);
+      pdf.text(formatTime(order.date), margin + contentWidth / 2, y - 7);
+      y += 14;
 
       pdf.text(order.address, margin, y);
       pdf.text(order.paymentMethod, margin + contentWidth / 2, y);
-      y += 15;
+      y += 14;
 
-      // Items table header
+      addSectionLine();
+
+      // ── Items table ──
       pdf.setFont('helvetica', 'bold');
       pdf.setFontSize(9);
-      pdf.setTextColor(100, 100, 100);
+      pdf.setTextColor(...COLOURS.textMuted);
       pdf.text('Item', margin, y);
-      pdf.text('Qty', margin + contentWidth - 40, y);
-      pdf.text('Price', margin + contentWidth - 25, y);
-      pdf.text('Total', margin + contentWidth - 10, y);
-      y += 7;
+      pdf.text('Qty', margin + contentWidth - 45, y);
+      pdf.text('Unit Price', margin + contentWidth - 25, y);
+      pdf.text('Line Total', margin + contentWidth - 12, y);
+      y += 6;
 
-      // Items
       pdf.setFont('helvetica', 'normal');
-      pdf.setFontSize(9);
-      pdf.setTextColor(32, 43, 41);
+      pdf.setTextColor(...COLOURS.textDark);
       order.items.forEach((item) => {
         pdf.text(item.name, margin, y);
-        pdf.text(item.quantity.toString(), margin + contentWidth - 40, y);
+        pdf.text(item.quantity.toString(), margin + contentWidth - 45, y);
         pdf.text(`₹${formatPrice(item.price)}`, margin + contentWidth - 25, y);
-        pdf.text(`₹${formatPrice(item.price * item.quantity)}`, margin + contentWidth - 10, y);
-        y += 7;
+        pdf.text(`₹${formatPrice(item.price * item.quantity)}`, margin + contentWidth - 12, y);
+        y += 6.5;
       });
 
-      y += 5;
-
-      // Totals
-      pdf.setFont('helvetica', 'normal');
-      pdf.setFontSize(9);
-      pdf.setTextColor(100, 100, 100);
-      pdf.text('Subtotal', margin, y);
-      pdf.text(`₹${formatPrice(order.subtotal)}`, margin + contentWidth - 10, y);
       y += 6;
 
-      pdf.text('Delivery', margin, y);
-      pdf.text(`₹${formatPrice(order.deliveryCharge)}`, margin + contentWidth - 10, y);
-      y += 6;
+      // ── Totals block ──
+      const totals = [
+        { label: 'Subtotal', value: order.subtotal, color: COLOURS.textMuted },
+        { label: 'Delivery', value: order.deliveryCharge, color: COLOURS.textMuted },
+      ];
 
       if (order.discount > 0) {
-        pdf.setTextColor(16, 109, 104);
-        pdf.text('Discount', margin, y);
-        pdf.text(`-₹${formatPrice(order.discount)}`, margin + contentWidth - 10, y);
-        y += 6;
+        totals.push({ label: 'Discount', value: -order.discount, color: COLOURS.teal });
       }
 
-      pdf.setFont('helvetica', 'bold');
-      pdf.setFontSize(10);
-      pdf.setTextColor(32, 43, 41);
-      pdf.text('Total', margin, y);
-      pdf.text(`₹${formatPrice(order.total)}`, margin + contentWidth - 10, y);
-      y += 15;
+      totals.forEach(({ label, value, color }) => {
+        pdf.setFont('helvetica', 'normal');
+        pdf.setTextColor(...color);
+        pdf.text(label, margin, y);
+        pdf.setFont('helvetica', 'bold');
+        pdf.text(`₹${formatPrice(Math.abs(value))}`, margin + contentWidth - 12, y);
+        y += 6;
+      });
 
-      // Payment info
-      pdf.setFont('helvetica', 'normal');
-      pdf.setFontSize(9);
-      pdf.setTextColor(32, 43, 41);
-      pdf.text('Payment Status: Paid via ' + order.paymentMethod, margin, y);
-      y += 15;
-
-      // Thank you
+      // Final total
       pdf.setFont('helvetica', 'bold');
       pdf.setFontSize(11);
-      pdf.setTextColor(32, 43, 41);
+      pdf.setTextColor(...COLOURS.textDark);
+      pdf.text('Total', margin, y);
+      pdf.setTextColor(...COLOURS.teal);
+      pdf.text(`₹${formatPrice(order.total)}`, margin + contentWidth - 12, y);
+      y += 16;
+
+      // ── Payment info ──
+      pdf.setFont('helvetica', 'normal');
+      pdf.setFontSize(9);
+      pdf.setTextColor(...COLOURS.textDark);
+      pdf.text(`Payment Method: ${order.paymentMethod}`, margin, y);
+      y += 7;
+      pdf.text(`Payment Status: Paid`, margin, y);
+      y += 14;
+
+      // ── Thank you message ──
+      pdf.setFont('helvetica', 'bold');
+      pdf.setFontSize(12);
+      pdf.setTextColor(...COLOURS.textDark);
       pdf.text('Thank you for choosing AwayStack.', margin, y);
       y += 8;
 
       pdf.setFont('helvetica', 'normal');
       pdf.setFontSize(9);
-      pdf.setTextColor(100, 100, 100);
+      pdf.setTextColor(...COLOURS.textMuted);
       pdf.text('Made with love & care for the voiceless', margin, y);
-      y += 20;
+      y += 18;
 
-      // PAW CERTIFIED seal
+      // ── PAW CERTIFIED seal ──
       pdf.setFont('helvetica', 'bold');
       pdf.setFontSize(10);
-      pdf.setTextColor(16, 109, 104);
-      pdf.text('PAW CERTIFIED', margin + contentWidth / 2 - 15, y);
+      pdf.setTextColor(...COLOURS.teal);
+      pdf.text('PAW CERTIFIED', margin + contentWidth / 2 - 18, y);
+
+      pdf.setFont('helvetica', 'normal');
       pdf.setFontSize(8);
-      pdf.setTextColor(16, 109, 104);
-      pdf.text('Approved with love for happier paws.', margin + contentWidth / 2 - 20, y + 5);
+      pdf.setTextColor(...COLOURS.textMuted);
+      pdf.text('Approved with love for happier paws.', margin + contentWidth / 2 - 24, y + 5);
+      y += 18;
+
+      // Draw a subtle separator line above seal
+      pdf.setDrawColor(...COLOURS.teal);
+      pdf.setLineWidth(0.3);
+      pdf.line(margin + contentWidth / 2 - 30, y - 14, margin + contentWidth / 2 + 30, y - 14);
 
       pdf.save(`invoice-${order.id}.pdf`);
     } catch (err) {
@@ -373,7 +412,7 @@ export function InvoiceReceipt({ order }) {
           </div>
 
           {/* Action Buttons */}
-          <div className="flex justify-center gap-4 mt-8 sm:mt-10">
+          <div className="flex justify-center gap-4 mt-8 sm:mt-10 no-print">
             <Button
               variant="outlineDark"
               size="lg"
