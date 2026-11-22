@@ -38,7 +38,7 @@ export default function AwayStackPage() {
     <main className="bg-background">
       <Container>
         {/* Product — gallery and information side by side */}
-        <section className="scroll-mt-24 grid grid-cols-1 gap-10 lg:grid-cols-2 lg:items-start lg:gap-12 xl:gap-16 pt-10 sm:pt-14">
+        <section className="scroll-mt-24 grid grid-cols-1 gap-10 lg:grid-cols-2 lg:items-start lg:gap-12 xl:gap-16 pt-16 sm:pt-20">
           <ProductGallery
             images={product.images}
             selectedId={selectedId}
