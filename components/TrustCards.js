@@ -42,7 +42,7 @@ export function TrustCards() {
                 : { background: '#D9F0E4', wave: '#A9DCC4' };
             return (
               <div
-                key={item.name}
+                key={item.title}
                 className="relative flex flex-col overflow-hidden rounded-[2rem] border border-text/15 bg-white shadow-sm"
               >
                 <div className="absolute inset-x-0 top-0 h-[36px] w-full">

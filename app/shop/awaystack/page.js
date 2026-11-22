@@ -35,7 +35,7 @@ export default function AwayStackPage() {
   };
 
   return (
-    <main className="overflow-x-hidden bg-background">
+    <main className="bg-background">
       <Container>
         {/* Product — gallery and information side by side */}
         <section className="scroll-mt-24 grid grid-cols-1 gap-10 lg:grid-cols-2 lg:items-start lg:gap-12 xl:gap-16 pt-16 sm:pt-20">
@@ -44,7 +44,7 @@ export default function AwayStackPage() {
             selectedId={selectedId}
             onSelect={setSelectedId}
           />
-          <div className="flex flex-col gap-8 sm:gap-10">
+          <div className="flex min-w-0 flex-col gap-8 sm:gap-10">
             <ProductInfo
               badges={product.badges}
               name={product.name}
@@ -59,17 +59,15 @@ export default function AwayStackPage() {
             <TrustCards />
           </div>
         </section>
-
-        {/* Information tabs — full page width */}
-        <section className="scroll-mt-24 py-6 sm:py-8">
-          <ProductTabs />
-        </section>
-
-        {/* Lifestyle images — full page width */}
-        <section className="scroll-mt-24 py-6 sm:py-8">
-          <LifestyleImages />
-        </section>
       </Container>
+
+      {/* Information tabs — full page width */}
+      <ProductTabs />
+
+      {/* Lifestyle images — full page width, 72px below the tab content */}
+      <div className="pt-[72px]">
+        <LifestyleImages />
+      </div>
     </main>
   );
 }

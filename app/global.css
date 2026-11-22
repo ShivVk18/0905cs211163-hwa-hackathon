@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&family=DM+Sans:wght@400;500;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Quicksand:wght@500;600;700&family=DM+Sans:wght@400;500;600&display=swap");
 
 @import "tailwindcss";
 
@@ -12,8 +12,15 @@
   --color-lavender: #A78BDA;
   --color-text: #202B29;
 
+  --color-ink: #2B2118;
+  --color-sand: #F3EAD8;
+  --color-brand-teal: #1C8C88;
+  --color-brand-yellow: #FFC94D;
+  --color-brand-lilac: #9C8FE6;
+
   --font-heading: "Quicksand", ui-sans-serif, system-ui, sans-serif;
   --font-body: "DM Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-fredoka: "Fredoka", ui-sans-serif, system-ui, sans-serif;
 
   --radius-card: 1rem;
   --radius-button: 0.75rem;
