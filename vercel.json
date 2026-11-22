@@ -4,6 +4,8 @@
   "routes": [
     { "src": "/design-preview", "dest": "/design-preview.html" },
     { "src": "/", "dest": "/index.html" },
-    { "src": "/shop/awaystack", "dest": "/shop/awaystack.html" }
+    { "src": "/shop/awaystack", "dest": "/shop/awaystack.html" },
+    { "src": "/shop/awaystack/checkout", "dest": "/shop/awaystack/checkout.html" },
+    { "src": "/shop/awaystack/order-confirmed", "dest": "/shop/awaystack/order-confirmed.html" }
   ]
 }
