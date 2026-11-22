@@ -8,7 +8,7 @@ export function AnnouncementBar() {
       initial={{ opacity: 0, y: -8 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.35, ease: 'easeOut' }}
-      className="bg-dark-teal px-4 py-2.5 text-center text-white"
+      className="mb-4 bg-dark-teal px-4 py-2.5 text-center text-white"
     >
       <p className="flex flex-wrap items-center justify-center gap-x-1.5 text-[11px] leading-5 font-body sm:text-xs md:text-sm">
         <span className="whitespace-nowrap">Free delivery across India</span>
