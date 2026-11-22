@@ -3,6 +3,7 @@
   "outputDirectory": "out",
   "routes": [
     { "src": "/design-preview", "dest": "/design-preview.html" },
-    { "src": "/", "dest": "/index.html" }
+    { "src": "/", "dest": "/index.html" },
+    { "src": "/shop/awaystack", "dest": "/shop/awaystack.html" }
   ]
 }
