@@ -19,7 +19,7 @@ function PackCard({ pack, isSelected, onSelect }) {
       type="button"
       onClick={() => onSelect(pack.id)}
       aria-pressed={isSelected}
-      className={`relative flex items-start justify-between gap-3 rounded-2xl border p-5 text-left transition-all duration-200 ${
+      className={`relative flex items-start justify-between gap-3 rounded-[2rem] border-2 p-5 text-left transition-all duration-200 ${
         isSelected
           ? 'border-teal bg-teal/5 shadow-card'
           : 'border-text/15 bg-background/40 hover:border-text/40 hover:bg-background/70'
@@ -76,7 +76,7 @@ function QtyControl({ value, onChange }) {
 function AddOnCard({ addOn, isSelected, qty, onToggle, onChangeQty }) {
   return (
     <div
-      className={`relative flex w-full flex-col gap-3 rounded-2xl border p-5 transition-all duration-200 sm:flex-row sm:items-center sm:justify-between sm:gap-4 ${
+      className={`relative flex w-full flex-col gap-3 rounded-[2rem] border p-5 transition-all duration-200 sm:flex-row sm:items-center sm:justify-between sm:gap-4 ${
         isSelected
           ? 'border-teal bg-teal/5 shadow-card'
           : 'border-text/15 bg-background/40 hover:border-text/40 hover:bg-background/70'
@@ -238,7 +238,7 @@ export function ProductPurchase({ onAddToCart, onBuyNow }) {
       </div>
 
       {/* Price summary */}
-      <div className="rounded-2xl border border-text/15 bg-background p-5 sm:p-6 shadow-soft">
+      <div className="rounded-[2rem] border border-text/15 bg-background p-5 sm:p-6 shadow-soft">
         <div className="flex items-baseline justify-between text-sm sm:text-base">
           <span className="text-text/70">Pack</span>
           <span className="font-heading text-teal font-bold">₹{formatPrice(pack.price)}</span>

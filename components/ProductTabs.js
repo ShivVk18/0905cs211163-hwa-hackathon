@@ -1,7 +1,9 @@
 'use client';
 
 import { useState } from 'react';
+import { motion } from 'motion/react';
 
+import { Container } from '@/components/Container';
 import { product } from '@/data/product';
 
 const { tabs } = product;
@@ -73,7 +75,7 @@ function renderTabContent(tab) {
     }
     case 'whats-inside': {
       return (
-        <div className="grid grid-cols-1 gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:items-center lg:gap-12">
+        <div className="grid grid-cols-1 gap-8 lg:grid-cols-[0.8fr_1.25fr] lg:items-center lg:gap-12">
           <div className="mx-auto w-full max-w-[420px] lg:mx-0">
             <div className="relative overflow-hidden rounded-[2rem] border-2 border-text bg-white shadow-soft aspect-[687/1024]">
               <img
@@ -105,7 +107,7 @@ function renderTabContent(tab) {
     }
     case 'specs': {
       return (
-        <div className="rounded-2xl border border-text/15 bg-background p-5 sm:p-6 lg:p-8">
+        <div className="rounded-[2rem] border border-text/15 bg-background p-5 sm:p-6 lg:p-8">
           <div className="grid grid-cols-1 gap-x-8 gap-y-5 sm:grid-cols-2 lg:grid-cols-3">
             {tab.specs.map((spec) => (
               <SpecItem key={spec.label} label={spec.label} value={spec.value} />
@@ -120,7 +122,7 @@ function renderTabContent(tab) {
           {tab.cards.map((card, i) => (
             <div
               key={i}
-              className="relative overflow-hidden rounded-2xl border border-text/15 shadow-soft flex flex-col items-center gap-2 sm:gap-3 text-center"
+              className="relative overflow-hidden rounded-[2rem] border border-text/15 shadow-soft flex flex-col items-center gap-2 sm:gap-3 text-center"
               style={{ backgroundColor: card.background }}
             >
               <WaveTop color={card.wave} background={card.background} />
@@ -145,36 +147,46 @@ export function ProductTabs() {
   const tab = tabs.find((t) => t.id === activeTabId) ?? tabs[0];
 
   return (
-    <div id="product-tabs" className="space-y-10 sm:space-y-12">
-      {/* Tab navigation */}
-      <div className="relative">
-        <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 overflow-x-auto snap-x pb-2 sm:pb-0">
-          {tabs.map((t) => {
-            const isActive = t.id === activeTabId;
-            return (
-              <button
-                key={t.id}
-                type="button"
-                onClick={() => setActiveTabId(t.id)}
-                aria-pressed={isActive}
-                className={`relative whitespace-nowrap rounded-full border px-5 py-2 text-sm font-medium transition-all duration-200 snap-start ${
-                  isActive
-                    ? 'border-teal bg-teal text-white shadow-card'
-                    : 'border-text/20 bg-background text-text/60 hover:border-text/40'
-                }`}
-              >
-                {t.label}
-              </button>
-            );
-          })}
+    <section id="product-tabs" className="scroll-mt-24 bg-background py-20 sm:py-28">
+      <Container>
+        {/* Tab navigation */}
+        <div className="relative">
+          <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 overflow-x-auto snap-x pb-2 sm:pb-0">
+            {tabs.map((t) => {
+              const isActive = t.id === activeTabId;
+              return (
+                <button
+                  key={t.id}
+                  type="button"
+                  onClick={() => setActiveTabId(t.id)}
+                  aria-pressed={isActive}
+                  className={`relative whitespace-nowrap rounded-full border px-5 py-2 text-sm font-medium transition-all duration-200 snap-start ${
+                    isActive
+                      ? 'border-teal bg-teal text-white shadow-card'
+                      : 'border-text/20 bg-background text-text/60 hover:border-text/40'
+                  }`}
+                >
+                  {t.label}
+                </button>
+              );
+            })}
+          </div>
         </div>
-      </div>
 
-      {/* Tab content */}
-      <div className="mt-8 sm:mt-10">
-        {renderTabContent(tab)}
-      </div>
-    </div>
+        {/* Tab content */}
+        <div className="mt-8 sm:mt-10">
+          <motion.div
+            key={activeTabId}
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 10 }}
+            transition={{ duration: 0.25 }}
+          >
+            {renderTabContent(tab)}
+          </motion.div>
+        </div>
+      </Container>
+    </section>
   );
 }
 

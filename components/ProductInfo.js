@@ -20,18 +20,18 @@ export function ProductInfo({ badges, name, description, price }) {
       </div>
 
       {/* Title */}
-      <h1 className="font-heading text-[2.1rem] font-bold leading-[1.05] tracking-tight text-text sm:text-5xl lg:text-[3.1rem] xl:text-[3.4rem]">
+      <h1 className="font-heading text-4xl font-bold leading-tight tracking-tight text-text sm:text-5xl">
         {name}
       </h1>
 
       {/* Description */}
-      <p className="leading-relaxed text-text/70 sm:text-lg">
+      <p className="mt-4 leading-relaxed text-text/70 sm:text-lg">
         {description}
       </p>
 
       {/* Price */}
-      <div className="mt-4 flex items-baseline gap-3 sm:mt-5 sm:gap-4">
-        <span className="font-heading text-2xl font-bold text-text sm:text-3xl">
+      <div className="mt-6 flex items-baseline gap-3 sm:mt-7 sm:gap-4">
+        <span className="font-heading text-3xl font-bold text-text sm:text-4xl">
           ₹{price.toLocaleString('en-IN')}
         </span>
         <span className="text-sm font-medium text-text/60 sm:text-base">

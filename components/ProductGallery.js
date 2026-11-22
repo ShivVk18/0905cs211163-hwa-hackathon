@@ -11,7 +11,7 @@ export function ProductGallery({ images, selectedId, onSelect, className = '' })
   return (
     <div className={`flex flex-col gap-5 sm:gap-6 ${className}`}>
       {/* Main image */}
-      <div className="relative overflow-hidden rounded-[2rem] border-2 border-text bg-white shadow-soft aspect-[4/3]">
+      <div className="relative overflow-hidden rounded-[2rem] border-2 border-text bg-white shadow-soft aspect-[1/1]">
         <Badge
           variant="peach"
           size="sm"
@@ -23,7 +23,7 @@ export function ProductGallery({ images, selectedId, onSelect, className = '' })
           src={selected.src}
           alt={selected.alt}
           width={1024}
-          height={768}
+          height={1024}
           loading="lazy"
           decoding="async"
           className="block w-full h-full object-cover transition-opacity duration-300"
@@ -51,7 +51,7 @@ export function ProductGallery({ images, selectedId, onSelect, className = '' })
                 src={img.src}
                 alt={img.alt}
                 width={1024}
-                height={768}
+                height={1024}
                 loading="lazy"
                 decoding="async"
                 className="block w-full h-full object-cover"

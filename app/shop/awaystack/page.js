@@ -60,17 +60,17 @@ export default function AwayStackPage() {
         </section>
 
         {/* Trust strip — full page width */}
-        <section className="scroll-mt-24">
+        <section className="scroll-mt-24 py-20 sm:py-28">
           <TrustCards />
         </section>
 
         {/* Information tabs — full page width */}
-        <section className="scroll-mt-24">
+        <section className="scroll-mt-24 py-20 sm:py-28">
           <ProductTabs />
         </section>
 
         {/* Lifestyle images — full page width */}
-        <section className="scroll-mt-24">
+        <section className="scroll-mt-24 py-20 sm:py-28">
           <LifestyleImages />
         </section>
       </Container>

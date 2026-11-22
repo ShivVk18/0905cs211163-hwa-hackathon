@@ -53,7 +53,7 @@ export function DeliveryChecker() {
   };
 
   return (
-    <section className="scroll-mt-24 rounded-2xl border border-text/15 bg-background p-5 sm:p-6 shadow-soft">
+    <section className="scroll-mt-24 rounded-[2rem] border-2 border-text bg-white shadow-soft p-5 sm:p-6">
       <h3 className="font-heading text-lg font-bold leading-snug text-text sm:text-xl">
         {delivery.heading}
       </h3>
