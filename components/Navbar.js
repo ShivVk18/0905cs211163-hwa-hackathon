@@ -7,15 +7,8 @@ import { Button } from './Button';
 import { CartButton } from './CartButton';
 import { useCart } from './CartProvider';
 
-const PAW_ICON = (
-  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-    <path d="M12 3.5c2.8 0 4.8 2.8 4.8 5.6s-1.9 5.4-4.8 5.4-4.8-2.6-4.8-5.4S9.2 3.5 12 3.5Z" />
-    <circle cx="7.6" cy="6.6" r="1.35" fill="currentColor" />
-    <circle cx="11.6" cy="4.4" r="1.35" fill="currentColor" />
-    <circle cx="15.6" cy="5.6" r="1.35" fill="currentColor" />
-    <circle cx="17.4" cy="9.4" r="1.25" fill="currentColor" />
-    <circle cx="6.2" cy="10.4" r="1.25" fill="currentColor" />
-  </svg>
+const FaviconIcon = (
+  <img src="/images/favicon.ico" alt="AwayStack" className="w-9 h-9" />
 );
 
 const MENU_ICON = (
@@ -97,7 +90,7 @@ export function Navbar() {
               className="group flex shrink-0 items-center gap-2 justify-self-start text-teal transition-transform duration-200 hover:-rotate-3"
             >
               <span className="grid h-9 w-9 place-items-center rounded-xl bg-teal text-white shadow-soft transition-colors duration-200 group-hover:bg-dark-teal">
-                {PAW_ICON}
+                {FaviconIcon}
               </span>
               <span className="hidden font-heading text-xl font-bold tracking-tight text-text sm:inline">
                 AwayStack
@@ -182,7 +175,7 @@ export function Navbar() {
             <div className="flex items-center justify-between border-b border-peach/50 px-5 py-4">
               <span className="flex items-center gap-2 font-heading text-lg font-bold tracking-tight text-text">
                 <span className="grid h-8 w-8 place-items-center rounded-lg bg-teal text-white">
-                  {PAW_ICON}
+                  {FaviconIcon}
                 </span>
                 AwayStack
               </span>

@@ -3,11 +3,9 @@
 import { scrollToSection } from '@/lib/scroll';
 
 const FOOTER_LINKS = [
-  { name: 'AwayStack', href: '#pick-your-pack', type: 'section' },
-  { name: 'Flavour cups', href: '#flavour-cups', type: 'section' },
-  { name: 'Shipping', href: '#pick-your-pack', type: 'section' },
-  { name: 'Returns', href: '#pick-your-pack', type: 'section' },
-  { name: 'Contact', href: 'mailto:hello@awaystack.com', type: 'external' },
+  { name: 'AwayStack', href: '/shop/awaystack', type: 'route' },
+  { name: 'Flavour Cups', href: '/shop/awaystack', type: 'route' },
+  { name: 'Shop', href: '/shop/awaystack', type: 'route' },
 ];
 
 export function Footer() {
