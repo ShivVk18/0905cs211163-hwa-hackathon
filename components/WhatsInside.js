@@ -20,7 +20,7 @@ function PawPrint() {
       whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
       viewport={{ once: true, amount: 0.2 }}
       transition={{ duration: 0.6 }}
-      className="pointer-events-none absolute -bottom-8 right-4 h-28 w-28 text-text/10 sm:-bottom-10 sm:right-6 sm:h-36 sm:w-36 lg:h-40 lg:w-40"
+      className="pointer-events-none absolute bottom-8 right-4 h-28 w-28 text-text/10 sm:right-6 sm:h-36 sm:w-36 lg:h-40 lg:w-40"
       fill="currentColor"
     >
       <ellipse cx="50" cy="63" rx="23" ry="18.5" />
@@ -35,11 +35,10 @@ function PawPrint() {
 export function WhatsInside() {
   return (
     <section id="whats-inside" className="relative overflow-hidden bg-background py-14 sm:py-16 lg:py-20">
-      <PawPrint />
-
       {/* Centred yellow panel */}
       <div className="relative z-10 mx-auto w-[90%] max-w-[1280px]">
-        <div className="rounded-[2.5rem] bg-yellow px-6 py-12 sm:px-9 sm:py-16 lg:px-10 lg:py-16">
+        <div className="relative rounded-[2.5rem] bg-yellow px-6 py-12 sm:px-9 sm:py-16 lg:px-10 lg:py-16">
+          <PawPrint />
           <div className="grid items-center gap-12 lg:grid-cols-[0.75fr_1.25fr] lg:gap-10">
             {/* Left — exploded product image */}
             <motion.div
