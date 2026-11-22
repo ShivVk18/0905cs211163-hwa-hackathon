@@ -126,7 +126,7 @@ export function Navbar() {
             <div className="flex shrink-0 items-center gap-2 justify-self-end">
               <CartButton count={cartCount} onClick={handleCartClick} />
 
-              <Button variant="raised" size="sm" shape="pill" asChild>
+              <Button variant="raised" size="sm" shape="pill" asChild className="text-white">
                 <Link href={PRODUCT_HREF}>Shop now</Link>
               </Button>
 

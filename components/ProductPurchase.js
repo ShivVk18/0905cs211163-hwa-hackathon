@@ -19,10 +19,10 @@ function PackCard({ pack, isSelected, onSelect }) {
       type="button"
       onClick={() => onSelect(pack.id)}
       aria-pressed={isSelected}
-      className={`relative flex items-start justify-between gap-3 rounded-[2rem] border-2 p-5 text-left transition-all duration-200 ${
+      className={`relative flex items-start justify-between gap-3 rounded-[2rem] border p-5 text-left transition-all duration-200 ${
         isSelected
-          ? 'border-teal bg-teal/5 shadow-card'
-          : 'border-text/15 bg-background/40 hover:border-text/40 hover:bg-background/70'
+          ? 'border-text bg-white shadow-card'
+          : 'border-text/15 bg-background hover:border-text/40 hover:bg-background/70'
       }`}
     >
       <div>
@@ -36,6 +36,13 @@ function PackCard({ pack, isSelected, onSelect }) {
       <span className="shrink-0 font-heading text-xl font-bold text-teal">
         ₹{formatPrice(pack.price)}
       </span>
+      {isSelected && (
+        <span className="absolute top-4 right-4 flex h-6 w-6 items-center justify-center rounded-full border-2 border-text bg-white text-text">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4">
+            <polyline points="20 6 9 17 4 12" />
+          </svg>
+        </span>
+      )}
     </button>
   );
 }
@@ -82,35 +89,34 @@ function AddOnCard({ addOn, isSelected, qty, onToggle, onChangeQty }) {
           : 'border-text/15 bg-background/40 hover:border-text/40 hover:bg-background/70'
       }`}
     >
-      <button
-        type="button"
-        onClick={onToggle}
-        aria-pressed={isSelected}
-        className="flex min-w-0 flex-1 items-start gap-3 text-left"
-      >
-        <span
-          aria-hidden="true"
-          className={`relative mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-xs font-bold transition-all duration-200 ${
-            isSelected
-              ? 'border-teal bg-teal text-white'
-              : 'border-text/30 bg-background text-text/40'
-          }`}
-        >
-          {isSelected ? '✓' : ''}
-        </span>
-        <span className="block min-w-0 flex-1">
-          <span className="block font-heading text-base font-bold leading-snug text-text">
-            {addOn.name}
-          </span>
-          <span className="mt-0.5 block text-sm leading-relaxed text-text/70">
-            {addOn.description}
-          </span>
-        </span>
-        <span className="shrink-0 font-heading text-base font-bold text-teal">
-          ₹{formatPrice(addOn.price)}
-        </span>
-      </button>
-      <div className="flex justify-end sm:justify-start">
+      <div className="flex items-center gap-4 sm:flex-row sm:items-center sm:justify-between sm:gap-4">
+        <div className="flex items-center gap-4 shrink-0">
+          <div className="flex items-center gap-3">
+            <button
+              type="button"
+              onClick={onToggle}
+              aria-pressed={isSelected}
+              className="relative flex h-7 w-7 items-center justify-center rounded-full border-2 border-text text-text transition-colors duration-200"
+            >
+              {isSelected ? (
+                <span className="text-[10px] font-bold text-white">✓</span>
+              ) : (
+                <span className="text-[10px] font-bold text-text/40">◯</span>
+              )}
+            </button>
+            <div className="flex min-w-0 flex-1 items-start gap-3 text-left">
+              <span className="block font-heading text-base font-bold leading-snug text-text">
+                {addOn.name}
+              </span>
+              <span className="mt-0.5 block text-sm leading-relaxed text-text/70">
+                {addOn.description}
+              </span>
+            </div>
+            <span className="shrink-0 font-heading text-base font-bold text-teal">
+              ₹{formatPrice(addOn.price)}
+            </span>
+          </div>
+        </div>
         <QtyControl value={qty} onChange={(next) => onChangeQty(addOn.id, next)} />
       </div>
     </div>
