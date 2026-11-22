@@ -65,6 +65,31 @@ export const product = {
       description: 'A spare band so you can swap while the other one is being cleaned.',
     },
   ],
+  delivery: {
+    heading: 'Check delivery to your area',
+    inputPlaceholder: 'Enter PIN code',
+    buttonLabel: 'Check',
+    invalidMessage: 'Please enter a valid six-digit PIN code.',
+    availableMessage: 'We deliver to your area.',
+    unavailableMessage: 'Delivery is not available in your area yet.',
+  },
+  trust: [
+    {
+      title: 'Free Delivery',
+      description: 'All over India',
+      icon: 'truck',
+    },
+    {
+      title: '30-day returns',
+      description: 'No questions asked',
+      icon: 'undo',
+    },
+    {
+      title: 'Cash on delivery',
+      description: 'UPI and cards too',
+      icon: 'rupee',
+    },
+  ],
 };
 
 export default product;

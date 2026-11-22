@@ -7,6 +7,8 @@ import { Container } from '@/components/Container';
 import { ProductGallery } from '@/components/ProductGallery';
 import { ProductInfo } from '@/components/ProductInfo';
 import { ProductPurchase } from '@/components/ProductPurchase';
+import { DeliveryChecker } from '@/components/DeliveryChecker';
+import { TrustCards } from '@/components/TrustCards';
 import { product } from '@/data/product';
 
 export default function AwayStackPage() {
@@ -29,6 +31,8 @@ export default function AwayStackPage() {
               price={product.price}
             />
             <ProductPurchase />
+            <DeliveryChecker />
+            <TrustCards />
           </div>
         </div>
       </Container>
